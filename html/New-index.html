@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tune Hustle – Audiobooks & Kits for Women’s Side Hustles</title>
+  <meta name="description" content="Side hustle kits and audiobooks for women, including stay-at-home moms, working professionals, and students. Start your journey with our Nail Bar Side Hustle Kit or shop individual resources for flexible income." />
+  <link rel="stylesheet" href="../css/New-index-style.css" />
+  <script defer src="../js/New-index-js.js"></script>
+
+  <!-- Product Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Nail Bar Side Hustle Kit",
+    "image": "images/nailbar-kit.jpg",
+    "description": "A complete Nail Bar Side Hustle Kit for women, including audiobook, guides, and resources to start your own nail bar business.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Tune Hustle"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "product1.html",
+      "priceCurrency": "USD",
+      "price": "25.00",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <!-- FAQ Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who is Tune Hustle for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tune Hustle is for women of all backgrounds—stay-at-home moms, working professionals, college and university students—who want to start a side hustle and earn flexible income."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I buy individual products?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can purchase individual audiobooks and guides from each kit if you prefer not to buy the entire bundle."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Gradient blobs background -->
+  <div class="gradient-overlay"></div>
+  <div class="gradient-overlay gradient-overlay-2"></div>
+  <div class="gradient-blob blob1"></div>
+  <div class="gradient-blob blob2"></div>
+  <div class="gradient-blob blob3"></div>
+  <div class="gradient-blob blob4"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">
+    <span>Tune <strong>Hustle</strong></span>
+  </div>
+  <div class="menu" id="menu">
+    <a href="../html/New-index.html">Home</a>
+    <a href="../html/New-product-1.html">Nail Bar Kit</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+  <header class="reveal fade-up">
+    <div class="header-inner">
+      <h1 class="fade-up">Turn Your Passion Into Profit</h1>
+      <p class="fade-up delay-1">
+        Tune Hustle provides practical resources and audiobooks for women ready to launch and grow their own side hustles—whether it's a nail bar, a boutique, or something uniquely you. Our growing range of kits is designed to help you build flexible income and achieve your goals.
+      </p>
+      <a href="#kits" class="cta-button small fade-up delay-2">Explore Side Hustle Kits</a>
+    </div>
+  </header>
+
+  <!-- Kits Section -->
+  <section class="kits-feature reveal fade-up" id="kits">
+    <h2 class="kits-heading fade-up">Choose Your Starter Kit</h2>
+    <div class="kits-grid">
+      <div class="kit-card slide-up">
+        <img src="../assets/Copy of Blue And Brown Illustratiive Kids Book Cover (1718 x 2382 px).svg" alt="Nail Bar Side Hustle Kit" />
+        <h3>Nail Bar Kit</h3>
+        <p>Launch your mobile or home nail studio with audio guides, planning docs, and starter tips!</p>
+        <a href="../html/New-product-1.html" class="cta-button small">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="content reveal fade-up">
+    <h2>Frequently Asked Questions</h2>
+    <ul>
+      <li class="fade-up"><strong>Who is Tune Hustle for?</strong>
+        <p>Tune Hustle is for women of all backgrounds—stay-at-home moms, working professionals, college and university students—who want to start a side hustle and earn flexible income.</p>
+      </li>
+      <li class="fade-up delay-1"><strong>Can I buy individual products?</strong>
+        <p>Yes, you can purchase individual audiobooks and guides from each kit if you prefer not to buy the entire bundle.</p>
+      </li>
+      <li class="fade-up delay-2"><strong>How do I get started?</strong>
+        <p>Simply choose a kit or product that fits your interests, follow the step-by-step resources, and start building your side hustle today!</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="reveal fade-up">
+    <p>© 2025 Tune Hustle. All rights reserved.</p>
+  </footer>
+
+  <!-- Menu JS -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
+
+    hamburger.addEventListener("click", () => {
+      menu.classList.toggle("active");
+    });
+
+    hamburger.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        menu.classList.toggle("active");
+      }
+    });
+  </script>
+</body>
+</html>

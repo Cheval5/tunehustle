@@ -1,0 +1,554 @@
+/* ====================== BASE STYLES ====================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Arial", sans-serif;
+  color: #2e003c;
+  background: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Gradient Blobs */
+.gradient-blob {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(160px);
+  opacity: 0.45;
+  z-index: -1;
+  animation: floatBlobs 60s ease-in-out infinite alternate;
+}
+
+.blob1 { background: #00C4CC; top: -150px; left: -200px; animation-delay: 0s; }
+.blob2 { background: #FF4FD8; top: 40%; left: 20%; animation-delay: 8s; opacity: 0.1; }
+.blob3 { background: #2AB7CA; bottom: -180px; right: -150px; animation-delay: 16s; }
+.blob4 { background: #7B2FF7; top: 70%; right: 30%; animation-delay: 24s; opacity: 0.2;}
+
+@keyframes floatBlobs {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(120px, -90px) scale(1.15); }
+  100% { transform: translate(-80px, 90px) scale(1); }
+}
+
+/* ====================== NAVIGATION ====================== */
+nav {
+  background: #fff;
+  padding: 18px 0 8px 0;
+  text-align: right;
+  box-shadow: 0 4px 20px rgba(92, 77, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  font-family: 'Poppins', sans-serif;
+}
+
+nav .menu { margin-right: 36px; }
+nav .menu a {
+  position: relative;
+  margin-right: 26px;
+  color: #7B2FF7;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 1.08em;
+  transition: color 0.3s ease;
+}
+
+nav .menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #00C4CC, #7B2FF7, #FF4FD8);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+nav .menu a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;               /* hidden on desktop */
+  flex-direction: column;
+  justify-content: center;     /* center lines inside */
+  gap: 6px;                    /* spacing between lines */
+  width: 28px;
+  cursor: pointer;                 
+  height: auto; /* 🔑 remove fixed height */
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #5C4DFF;
+  border-radius: 2px;
+}
+
+/* ====================== HERO HEADER ====================== */
+.cover-hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  position: relative;
+  border-radius: 32px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 1000px;
+  background: white;
+  z-index: 1;
+}
+
+.cover-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  padding: 3px;
+  background: linear-gradient(120deg, #00c4cc, #7b2ff7, #ff4fd8);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderGlowContinuous 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes borderGlowContinuous { 
+  0% { background-position: 0% 50%; } 
+  100% { background-position: 100% 50%; } 
+}
+
+.cover-hero h1 {
+  font-size: 2.4em;
+  font-weight: 800;
+  background: linear-gradient(120deg, #7B2FF7,#e24fff, #00c4cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.cover-hero h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #4B2450;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.cover-hero h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #00C4CC, #7B2FF7, #FF4FD8);
+}
+
+.cover-hero p.byline {
+  font-size: 1.05em;
+  color: #6B49A3;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 16px 39px;
+  background: linear-gradient(90deg, #f8bbd0 0%, #b2ebf2 100%);
+  color: #590066;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.22em;
+  box-shadow: 0 3px 26px rgba(160, 27, 143, 0.10);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: 32px;
+}
+
+.cta-button:hover {
+  transform: scale(1.06);
+  background: linear-gradient(90deg, #b2ebf2 0%, #f8bbd0 100%);
+  color: #fff;
+  box-shadow: 0 6px 38px rgba(160, 27, 143, 0.18);
+}
+
+/* ====================== PRICING SECTION ====================== */
+/* Kits Feature / Pricing Section */
+/* Kits Feature / Pricing Section */
+.kits-feature {
+  background: linear-gradient(120deg, #e276f77c 0%, #5a28cfcb 50%, #7ccff5a6 90%);
+  border-radius: 18px;
+  padding: 36px 20px 28px 20px;
+  max-width: 950px;
+  margin: 30px auto 32px auto;
+  text-align: center;
+}
+
+.kits-feature h2 {
+  font-size: 2.8em;
+  margin-bottom: 12px;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.kits-feature p {
+  font-size: 1.25em;
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Highlighted Box - main focus */
+/* Base Pricing Box */
+.pricing-box {
+  display: flex;
+  flex-direction: column; /* stack prices vertically */
+  align-items: center;
+  flex: 1 1 200px; /* flexible width for responsiveness */
+  max-width: 300px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(212, 143, 188, 0.25);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Highlighted / Featured Box */
+.pricing-box.highlight-special {
+  position: relative; /* needed for pseudo-element border */
+  background: #fff;
+  color: #7B2FF7; 
+  flex: 1 1 220px;
+  max-width: 240px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(160, 27, 143, 0.3);
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* Hover Effects */
+.pricing-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(178, 106, 175, 0.4), 0 0 12px rgba(123, 47, 247, 0.15);
+}
+
+.pricing-box.highlight-special:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 54px rgba(160, 27, 143, 0.45);
+}
+
+/* Original Price */
+.pricing-box .original-price {
+  display: block;
+  font-size: 0.95em;
+  color: #7B2FF7;
+  text-decoration: line-through;
+  margin-top: 12px;   /* space from top edge of box */
+  margin-bottom: 6px; /* space between original and main price */
+}
+
+/* Main / Discounted Price */
+.pricing-box .pricing-main {
+  font-size: 1.4em;
+  font-weight: 700;
+  background: linear-gradient(120deg, #00C4CC, #7B2FF7, #FF4FD8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px; /* space to title */
+}
+
+/* Pricing Box Title */
+.pricing-box .pricing-box-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #7B2FF7; /* visible dark purple */
+
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pricing-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .kits-feature h2 {
+    font-size: 2.2em;
+  }
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .pricing-box {
+    flex: 1 1 42%; /* 2 per row */
+    max-width: 42%;
+  }
+  .pricing-box.highlight-special {
+    flex: 1 1 46%;
+    max-width: 46%;
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;   /* push hamburger to right */
+    align-items: center;         /* vertical centering */
+    height: 60px;                /* consistent nav height */
+    padding: 0 20px;
+    position: relative;
+  }
+
+  nav .menu { display:none; }
+  .hamburger { display:flex; }
+  .gradient-blob { width:300px; height:300px; filter:blur(120px); opacity:0.3; }
+
+    nav .menu.active {
+    display: flex; /* show on toggle */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 180px;
+    background: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 20;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .cta-button.small { padding:12px 28px; font-size:1em; }
+  .hamburger { display:flex;  flex-direction: column; gap: 6px; margin-left: 18px; cursor: pointer;  }
+  nav .menu { top: 52px; left: auto; right: 10px; background: #ffffff; }
+  .gradient-blob { width:200px; height:200px; filter:blur(80px); opacity:0.2; animation:none; }
+}
+
+
+@media (max-width: 480px) {
+  .pricing-box {
+    max-width: 90%;
+    padding: 1.2rem;
+  }
+
+  .pricing-box .pricing-main {
+    font-size: 1.5rem;
+  }
+
+  .pricing-box p {
+    font-size: 1rem;
+  }
+
+    .hamburger {
+    width: 24px;
+    gap: 5px;                 /* smaller spacing */
+  }
+
+    .hamburger span {
+    height: 2.5px;
+  }
+
+}
+
+
+/* ====================== WHY CHOOSE ====================== */
+.content.why-choose {
+  padding: 40px 32px;
+  margin: 40px auto;
+  max-width: 950px;
+  text-align: center;
+  background: none;
+  color: #2e003c;
+}
+
+.content.why-choose h2 {
+  font-size: 2.8em;
+  margin-bottom: 22px;
+  color: #7B2FF7;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.content.why-choose ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content.why-choose li {
+  font-size: 1.15em;
+  font-weight: 500;
+  color: #2e003c;
+  margin-bottom: 24px;
+  position: relative;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.content.why-choose li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2em;
+  color: #7B2FF7;
+}
+
+.content.why-choose li:hover {
+  color: #FF4FD8;
+}
+
+/* ====================== FAQ / KIT DETAILS ====================== */
+.kit-details {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 50px 32px;
+  max-width: 950px;
+  margin: 40px auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  color: #2e003c;
+}
+
+.kit-details h2 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 32px;
+  text-align: center;
+  background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kit-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.kit-details li {
+  position: relative;
+  font-size: 1.15em;
+  margin-bottom: 20px;
+  padding-left: 40px;
+  line-height: 1.6;
+  color: #6B49A3;
+}
+
+.kit-details li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2em;
+  color: #7B2FF7;
+}
+
+.kit-details li strong {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #7B2FF7;
+}
+
+/* ====================== FOOTER ====================== */
+footer {
+  text-align: center;
+  padding: 18px 0 12px 0;
+  color: #555;
+  font-size: 0.95em;
+  background: transparent;
+}
+
+/* ====================== RESPONSIVE MEDIA QUERIES ====================== */
+
+/* General responsive tweaks */
+@media (max-width: 950px) {
+  .kits-feature, .content, .kit-details, .pricing-section {
+    max-width: 98vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+  .kits-grid, .pricing-grid {
+    gap: 18px;
+  }
+}
+
+
+/* Narrower screens */
+@media (max-width: 700px) {
+  .kits-grid, .pricing-grid { flex-direction: column; }
+  .pricing-box, .kit-card { max-width: 100%; }
+  .kit-details, .content.why-choose, .pricing-section {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .cta-button { padding: 12px 28px; font-size: 1em; }
+  .content.why-choose h2,
+  .kit-details h2,
+  .pricing-section h2 { font-size: 1.6em; }
+}
+
+@media (max-width: 400px) {
+  .content.why-choose li,
+  .kit-details li { padding-left: 24px; }
+}
+
+/* ====================== MOBILE BLOB OPTIMIZATION ====================== */
+@media (max-width: 768px) {
+  .gradient-blob {
+    width: 300px;
+    height: 300px;
+    filter: blur(120px);
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 500px) {
+  .gradient-blob {
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
+    opacity: 0.2;
+    animation: none; /* stop animation for very small screens */
+  }
+
+  .cover-hero::before {
+    padding: 2px;
+    background-size: 200% 200%;
+    animation: none; /* disable border animation */
+  }
+}
