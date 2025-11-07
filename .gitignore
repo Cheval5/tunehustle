@@ -1,0 +1,23 @@
+# ===== OS FILES =====
+Thumbs.db
+.DS_Store
+
+# ===== EDITOR SETTINGS =====
+.vscode/
+.idea/
+
+# ===== LOGS & CACHE =====
+*.log
+*.tmp
+*.cache
+.cache/
+
+# ===== SYSTEM / ARCHIVE FILES =====
+*.zip
+*.rar
+*.bak
+*.psd
+*.ai
+
+# ===== MISC =====
+desktop.ini
