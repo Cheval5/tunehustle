@@ -2,7 +2,7 @@ section,
 .cover-hero,
 .enhanced-pricing,
 .no-risk-message,
-.content.why-choose,
+.content,
 .testimonials,
 .kit-details,
 .final-cta {
@@ -17,7 +17,7 @@ section,
 .cover-hero,
 .enhanced-pricing,
 .no-risk-message,
-.content.why-choose,
+.content,
 .testimonials,
 .kit-details,
 .final-cta {
@@ -33,7 +33,7 @@ body {
   padding: 0;
   font-family: "Poppins", "Segoe UI", Arial, sans-serif;
   color: #2e003c;
-  background: linear-gradient(180deg, #fffdfd 0%, #faf7ff 45%, #f5fcff 100%);
+  background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);
   background-size: 200% 200%;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -684,6 +684,8 @@ section {
 
 .why-choose {
   background: linear-gradient(180deg, #fdf8ff 0%, #f2faff 100%);
+  padding-top: 25px !important; /* was likely around 50px */
+  margin-top: 0 !important;
 }
 
 .content.why-choose {
@@ -1663,9 +1665,11 @@ footer {
 /* ========== OPT-IN SECTION ========== */
 .email-optin {
   text-align: center;
-  padding: 50px 20px;
+  padding-bottom: 20px !important; /* was likely 50px */
+  margin-bottom: 20px !important; 
   max-width: 680px;
-  margin: 0 auto;
+  margin-top: 0 !important; /* removes extra space above heading */
+  padding-top: 10px !important; /* keeps minimal breathing room */
 }
 
 .email-optin h3 {
@@ -1742,8 +1746,11 @@ footer {
 .privacy-note {
   font-size: 0.85em;
   color: rgba(75, 60, 112, 0.8);
-  margin-top: 30px;
-  padding-top: 30px;
+  margin-top: 18px;      /* reduced from 50px */
+  padding-top: 0;        /* removed padding */
+  line-height: 1.5;
+  display: block;
+  opacity: 0.9;
 }
 
 /* === RESPONSIVE FIXES === */
@@ -1769,6 +1776,7 @@ footer {
   margin: -30px 0 -10px; /* connects sections smoothly */
   position: relative;
   z-index: 5;
+  margin-bottom: 10px !important;
 }
 
 .connector-icon {
@@ -1888,5 +1896,25 @@ footer {
     margin: 0 !important;
     padding: 0 !important;
     overflow-x: hidden;
+  }
+}
+
+/* ===== Fix spacing below "By Tune Hustle" ===== */
+.byline {
+  margin-bottom: 8px; /* tighter gap for desktop */
+}
+
+@media (max-width: 480px) {
+  .byline {
+    margin-bottom: 4px !important; /* almost no space on mobile */
+    font-size: 0.95em; /* optional: slightly smaller text */
+  }
+
+  .cover-hero .cta-button {
+    margin-top: 6px !important; /* bring button closer */
+  }
+
+  .cover-hero h2 {
+    margin-bottom: 10px !important; /* reduce space above "By Tune Hustle" */
   }
 }
