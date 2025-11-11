@@ -3,8 +3,6 @@ section,
 .enhanced-pricing,
 .no-risk-message,
 .content,
-.testimonials,
-.kit-details,
 .final-cta {
   margin-top: 100px;
   margin-bottom: 100px;
@@ -18,8 +16,6 @@ section,
 .enhanced-pricing,
 .no-risk-message,
 .content,
-.testimonials,
-.kit-details,
 .final-cta {
   padding-top: 80px;
   padding-bottom: 80px;
@@ -246,15 +242,15 @@ nav.scrolled {
 /* ====================== CONSISTENT SECTION SPACING ====================== */
 
 section {
-  margin: 100px auto;
+  margin: 0px auto;
   max-width: 1100px;
-  padding: 80px 40px;
+  padding: 0px 40px;
 }
 
 @media (max-width: 900px) {
   section {
-    margin: 70px auto;
-    padding: 60px 24px;
+    margin: 0px auto;
+    padding: 20px 24px;
   }
 }
 
@@ -879,6 +875,8 @@ section {
   text-align: center;
   color: #2e003c;
   overflow: hidden;
+  padding-bottom: 40px !important; /* was likely around 80–100px */
+  margin-bottom: 0 !important;
 
   /* Frosted glass look */
   background: rgba(255, 255, 255, 0.6);
@@ -1028,7 +1026,8 @@ section {
   max-width: 1100px;
   margin: 0 auto; /* keep consistent bottom gap */
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 10px !important; /* was likely 60–80px */
+  margin-top: 0 !important;
 }
 
 .kit-details::before {
@@ -1143,7 +1142,7 @@ section {
 /* Responsive */
 @media (max-width: 768px) {
   .kit-details {
-    padding: 60px 28px;
+    padding: 0px 28px;
     margin: 0 auto;
   }
   .kit-details h2 {
@@ -1153,7 +1152,7 @@ section {
 
 /* ====================== RESPONSIVE ====================== */
 @media (max-width: 768px) {
-  .content.why-choose, .kit-details {
+  .content.why-choose {
     padding: 60px 28px;
   }
   .content.why-choose h2, .kit-details h2 {
@@ -1518,12 +1517,10 @@ footer {
 }
 
 @media (max-width: 900px) {
-  section,
   .enhanced-pricing,
   .no-risk-message,
   .content.why-choose,
   .testimonials,
-  .kit-details,
   .final-cta {
     margin-top: 70px;
     margin-bottom: 70px;
@@ -1536,7 +1533,6 @@ footer {
   .no-risk-message,
   .content.why-choose,
   .testimonials,
-  .kit-details,
   .final-cta {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -1608,14 +1604,13 @@ footer {
 
 /* 🧩 Simplify sections that sit within white/neutral zones */
 .no-risk-message,
-.content.why-choose,
-.kit-details {
+.content.why-choose{
   margin-top: 90px;
   margin-bottom: 90px;
 }
 
 /* 🧈 Ensure even breathing room around section dividers */
-.section-divider {
+/* .section-divider {
   margin: 80px auto;
   height: 1px;
   width: 85%;
@@ -1623,7 +1618,7 @@ footer {
   background: linear-gradient(90deg, rgba(123,47,247,0.2), rgba(0,196,204,0.2));
   opacity: 0.3;
   border-radius: 2px;
-}
+} */
 
 /* 📱 Responsive adjustments (mobile & tablet) */
 @media (max-width: 900px) {
@@ -1631,8 +1626,6 @@ footer {
   .enhanced-pricing,
   .no-risk-message,
   .content.why-choose,
-  .testimonials,
-  .kit-details,
   .final-cta {
     margin-top: 70px;
     margin-bottom: 70px;
@@ -1640,9 +1633,9 @@ footer {
     padding-bottom: 60px;
   }
 
-  .section-divider {
+  /* .section-divider {
     margin: 60px auto;
-  }
+  } */
 }
 
 /* 🦋 Optional: Slight compression for small mobile screens */
@@ -1651,8 +1644,6 @@ footer {
   .enhanced-pricing,
   .no-risk-message,
   .content.why-choose,
-  .testimonials,
-  .kit-details,
   .final-cta {
     margin-top: 60px;
     margin-bottom: 60px;
@@ -1916,5 +1907,32 @@ footer {
 
   .cover-hero h2 {
     margin-bottom: 10px !important; /* reduce space above "By Tune Hustle" */
+  }
+}
+
+/* ==== FINAL SECTION SPACING FIX ==== */
+
+/* Reduce spacing between Testimonials and Kit Details */
+.testimonials {
+  margin-bottom: 40px !important;  /* overrides global 100px */
+  padding-bottom: 40px !important; /* tighter space below quote area */
+}
+
+.kit-details {
+  margin-top: 0px !important;     /* overrides global 100px */
+  padding-top: 30px !important;    /* tighter above kit heading */
+}
+
+@media (max-width: 900px) {
+  .cover-hero,
+  .enhanced-pricing,
+  .no-risk-message,
+  .content.why-choose,
+  .testimonials,
+  .final-cta {
+    margin-top: 60px !important;
+    margin-bottom: 60px !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
   }
 }
