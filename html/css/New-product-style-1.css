@@ -53,7 +53,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 80px;
+  padding: 14px 40px;
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -63,56 +63,6 @@ nav {
 }
 
 /* LOGO */
-
-
-/* --- Logo Styling --- */
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo a {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.site-logo {
-  height: 80px;
-  width: auto;
-  max-width: 160px;
-  display: block;
-  object-fit: contain;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.site-logo:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-/* --- Responsive scaling --- */
-@media (max-width: 1024px) {
-  .site-logo {
-    height: 38px;
-    max-width: 140px;
-  }
-}
-
-@media (max-width: 768px) {
-  .site-logo {
-    height: 34px;
-    max-width: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .site-logo {
-    height: 28px;
-    max-width: 100px;
-  }
-}
-
 
 /* MENU */
 nav .menu {
@@ -165,6 +115,7 @@ nav .menu a:hover::after {
   gap: 6px;
   width: 28px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .hamburger span {
@@ -196,6 +147,52 @@ nav.scrolled {
   }
 }
 
+/* --- Logo Styling --- */
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;        /* ✨ prevents shrinking on mobile */
+}
+
+
+.site-logo {
+  height: 67px;          /* desktop size */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.site-logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* --- RESPONSIVE LOGO SIZES --- */
+@media (max-width: 1024px) {
+  .site-logo {
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-logo {
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo {
+    height: 42px;
+  }
+}
+
+/* Ensure hamburger doesn’t push logo smaller */
+.hamburger {
+  flex-shrink: 0;
+}
+
+
 /* ====================== MOBILE MENU REFINEMENT ====================== */
 @media (max-width: 768px) {
   nav {
@@ -216,10 +213,12 @@ nav.scrolled {
   }
 
   /* Add subtle breathing room between logo and burger */
-  nav .logo span {
-    display: inline-block;
-    margin-right: 12px;
-  }
+nav .logo {
+  display: flex;
+  align-items: center;
+  height: auto !important;
+  padding: 0 !important;
+}
 
   /* Dropdown menu style */
   .menu {
