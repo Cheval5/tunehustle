@@ -40,21 +40,6 @@ nav {
 }
 
 /* LOGO */
-nav .logo {
-  font-family: "Poppins", "Inter", sans-serif;
-  font-size: 1.45em;
-  font-weight: 700;
-  background: linear-gradient(120deg, #7B2FF7, #00C4CC);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 0.4px;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-nav .logo:hover {
-  opacity: 0.85;
-}
 
 /* MENU */
 nav .menu {
@@ -138,6 +123,55 @@ nav.scrolled {
   }
 }
 
+/* --- Logo Styling --- */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.site-logo {
+  height: 80px;
+  width: auto;
+  max-width: 160px;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.site-logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* --- Responsive scaling --- */
+@media (max-width: 1024px) {
+  .site-logo {
+    height: 38px;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-logo {
+    height: 34px;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo {
+    height: 28px;
+    max-width: 100px;
+  }
+}
+
+
 /* ====================== MOBILE MENU REFINEMENT ====================== */
 @media (max-width: 768px) {
   nav {
@@ -146,10 +180,6 @@ nav.scrolled {
   }
 
   /* Reorder elements for balance */
-  .logo {
-    flex: 1;
-    text-align: left;
-  }
 
   .hamburger {
     display: flex;
@@ -222,7 +252,7 @@ nav.scrolled {
    ============================== */
 header {
   position: relative;
-  margin: 60px auto 40px auto;
+  margin: 40px auto;
   border-radius: 32px;
   max-width: 940px;
   overflow: visible;
@@ -232,14 +262,93 @@ header {
   padding: 80px 40px 70px;
 }
 
+/* Softer, whiter animated lines background */
 header::before {
   content: "";
   position: absolute;
-  top: -60px; left: 0; right: 0;
-  height: 260px;
-  background: radial-gradient(circle at center, rgba(123,47,247,0.12), rgba(0,196,204,0.06), transparent 80%);
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 140%;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.6) 0px,
+      rgba(255, 255, 255, 0.6) 2px,
+      rgba(123, 47, 247, 0.05) 4px,
+      rgba(0, 196, 204, 0.03) 6px,
+      transparent 8px
+    ),
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(123, 47, 247, 0.05) 30%,
+      rgba(0, 196, 204, 0.04) 50%,
+      transparent 90%
+    );
   z-index: -1;
-  filter: blur(60px);
+  border-radius: inherit;
+  filter: blur(45px);
+  opacity: 0.85;
+  background-size: 220% 220%;
+  animation: movingLines 28s linear infinite, subtleGlow 22s ease-in-out infinite alternate;
+}
+
+@keyframes movingLines {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+
+@keyframes subtleGlow {
+  0% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0.75; transform: scale(1); }
+}
+
+/* Mobile version — less blur for clarity, keep softness */
+@media (max-width: 600px) {
+  header::before {
+    top: -30%;
+    height: 160%;
+    filter: blur(35px);
+    opacity: 0.9;
+    background:
+      repeating-linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0.65) 0px,
+        rgba(255, 255, 255, 0.65) 2px,
+        rgba(123, 47, 247, 0.04) 4px,
+        rgba(0, 196, 204, 0.03) 6px,
+        transparent 8px
+      ),
+      radial-gradient(
+        circle at 50% 40%,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(123, 47, 247, 0.04) 30%,
+        rgba(0, 196, 204, 0.03) 50%,
+        transparent 90%
+      );
+  }
+}
+
+
+.hero-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  animation: floatIcon 4s ease-in-out infinite;
+}
+
+.hero-icon svg {
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(0 4px 10px rgba(123,47,247,0.25));
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 header h1 {
@@ -255,7 +364,7 @@ header h1 {
 
 header p {
   font-size: 1.2em;
-  color: #6B49A3;
+  color: #4b2450;
   max-width: 650px;
   margin: 0 auto 28px;
   line-height: 1.7;
