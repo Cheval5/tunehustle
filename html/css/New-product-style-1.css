@@ -316,21 +316,24 @@ section {
 }
 
 .cover-hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 800;
-  background: linear-gradient(120deg, #7B2FF7, #e24fff, #00C4CC);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+  /* background: linear-gradient(120deg, #7B2FF7, #e24fff, #00C4CC);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   margin: 18px 0;
+  color: #32323f;
 }
 .cover-hero h2 {
-  font-size: 1.6em;
+  font-size: 1.4em;
   font-weight: 600;
   color: #4B2450;
   margin-bottom: 20px;
 }
 .cover-hero p.byline {
-  font-size: 1.05em;
+  font-size: 1.10em;
   color: #6B49A3;
   font-weight: 500;
 }

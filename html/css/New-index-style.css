@@ -331,40 +331,166 @@ header::before {
   }
 }
 
-
-.hero-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 18px;
-  animation: floatIcon 4s ease-in-out infinite;
+/* ======== LUXURY FLYING COIN ======== */
+/* WRAPPER */
+.luxury-coin-wrapper {
+  position: relative;
+  width: 260px;
+  height: 320px;
+  margin: 0 auto;
 }
 
-.hero-icon svg {
-  width: 72px;
-  height: 72px;
-  filter: drop-shadow(0 4px 10px rgba(123,47,247,0.25));
+
+/* ============================
+   AURA RING (glowing halo)
+============================ */
+.aura-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  height: 330px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -2;
+
+  background: radial-gradient(
+    circle,
+    rgba(255,220,100,0.55) 0%,
+    rgba(255,210,80,0.35) 35%,
+    rgba(255,180,40,0.12) 60%,
+    rgba(255,180,0,0) 100%
+  );
+
+  filter: blur(32px);
+  animation: auraPulse 4s ease-in-out infinite alternate;
 }
 
-@keyframes floatIcon {
+@keyframes auraPulse {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1.18); opacity: 1; }
+}
+
+
+/* ============================
+   COIN IMAGE
+============================ */
+.luxury-coin {
+  width: 260px;
+  height: 260px;
+  background-image: url("/html/assets/coin-1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+
+  filter:
+    drop-shadow(0 18px 32px rgba(255,215,0,0.25))
+    drop-shadow(0 0 18px rgba(255,230,160,0.5));
+
+  animation:
+    floatCoin 2.4s ease-in-out infinite,
+    tiltCoin 5s ease-in-out infinite,
+    pulseCoin 4.5s ease-in-out infinite,
+    shineSweep 3s linear infinite;
+}
+
+
+/* FLOAT */
+@keyframes floatCoin {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50%      { transform: translateY(-28px); }
 }
+
+/* TILT */
+@keyframes tiltCoin {
+  0%, 100% { transform: rotate(0deg); }
+  33%      { transform: rotate(2deg); }
+  66%      { transform: rotate(-2deg); }
+}
+
+/* BREATHING PULSE */
+@keyframes pulseCoin {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+
+
+/* ============================
+   SHIMMER SWEEP (PREMIUM)
+============================ */
+/* SHIMMER — tuned for 260px coin */
+.luxury-coin::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40px;          /* starts just off the left edge */
+  width: 70px;          /* shimmer thickness */
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.30) 35%,
+    rgba(255,255,255,0.9) 55%,   /* bright center */
+    rgba(255,255,255,0.30) 75%,
+    rgba(255,255,255,0) 100%
+  );
+  filter: blur(10px);
+  transform: skewX(-18deg);
+  animation: shimmerLocked 3s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes shimmerLocked {
+  0%   { left: -40px; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { left: 230px; opacity: 1; }  /* ends perfectly at right edge */
+  90%  { opacity: 0; }
+  100% { left: 230px; opacity: 0; }
+}
+
+
+
+
+/* ============================
+   SHADOW
+============================ */
+/* .coin-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 180px;
+  height: 26px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(0,0,0,0.35), rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: shadowFloat 2.4s ease-in-out infinite;
+}
+
+@keyframes shadowFloat {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.35; }
+  50%      { transform: translateX(-50%) scale(0.8); opacity: 0.18; }
+} */
+
+
 
 header h1 {
   font-weight: 700;
   font-size: clamp(2.4rem, 5vw, 3.8rem);
   letter-spacing: 0.02em;
   margin-bottom: 20px;
-  background: linear-gradient(120deg, #00C4CC, #7B2FF7, #FF4FD8);
+  /* background: linear-gradient(120deg, #00C4CC, #7B2FF7, #FF4FD8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: fadeUp 1.4s ease both;
+  animation: fadeUp 1.4s ease both; */
+  color: #32323f;
 }
 
 header p {
   font-size: 1.2em;
-  color: #4b2450;
+  color: #272427;
   max-width: 650px;
   margin: 0 auto 28px;
   line-height: 1.7;
@@ -416,11 +542,11 @@ header p {
   transition: transform 0.3s ease;
 }
 .kits-heading {
-  font-size: 2.6em;
+  font-size: 3em;
   margin-bottom: 22px;
   color: #fff;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: lowercase; */
   font-weight: 700;
   position: relative;
 }
@@ -488,24 +614,25 @@ header p {
 }
 .content h2 {
   font-size: 2em;
-  font-weight: 800;
-  background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+  font-weight: 700;
+  /* background: linear-gradient(120deg, #7B2FF7, #00C4CC);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   margin-bottom: 24px;
+  color: #32323f;
 }
 .content ul { list-style: none; padding: 0; margin: 0; }
 .content li { margin-bottom: 22px; }
 .content strong {
   display: block;
   margin-bottom: 6px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1em;
-  color: #7B2FF7;
+  color: #4f4f58;
 }
 .content p {
   margin: 0;
-  color: #4b2450;
+  color: #272427;
   font-size: 1.05em;
   line-height: 1.6;
 }
