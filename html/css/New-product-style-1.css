@@ -936,11 +936,12 @@ section {
 /* Section Title */
 .testimonials h2 {
   font-size: 2.4em;
-  font-weight: 800;
-  background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+  font-weight: 700;
+  /* background: linear-gradient(120deg, #7B2FF7, #00C4CC);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   margin-bottom: 60px;
+  color: #32323f;
 }
 
 /* Slider Track */
@@ -1698,11 +1699,12 @@ footer {
 
 .email-optin h3 {
   font-size: 1.9em;
-  font-weight: 800;
-  background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+  font-weight: 700;
+  /* background: linear-gradient(120deg, #7B2FF7, #00C4CC);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   margin-bottom: 14px;
+  color: #525258;
 }
 
 .email-optin p {

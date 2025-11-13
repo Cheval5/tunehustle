@@ -626,13 +626,13 @@ header p {
 .content strong {
   display: block;
   margin-bottom: 6px;
-  font-weight: 700;
+  font-weight: 650;
   font-size: 1.1em;
-  color: #4f4f58;
+  color: #525258;
 }
 .content p {
   margin: 0;
-  color: #272427;
+  color: #302e30;
   font-size: 1.05em;
   line-height: 1.6;
 }
