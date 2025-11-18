@@ -317,7 +317,7 @@ section {
 
 .cover-hero h1 {
   font-weight: 700;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(2rem, 5vw, 3.4rem);
   letter-spacing: 0.02em;
   margin-bottom: 20px;
   /* background: linear-gradient(120deg, #7B2FF7, #e24fff, #00C4CC);
