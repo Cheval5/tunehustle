@@ -468,8 +468,8 @@ header p {
 
   .luxury-coin-wrapper {
     width: 220px;
-    height: 270px;
-    margin-bottom: 14px;
+    margin-bottom: -10px; /* closes the gap even more */
+    height: 250px;        /* slightly smaller wrapper to reduce spacing */
   }
 
   .luxury-coin {
@@ -488,7 +488,8 @@ header p {
 
   header h1 {
     font-size: 2rem;
-    margin-bottom: 12px;
+    margin-top: -10px;   /* pulls H1 upward toward coin */
+    margin-bottom: 10px; /* a bit tighter before the paragraph */
   }
 
   header p {
