@@ -524,6 +524,21 @@ header p {
   }
 }
 
+/* --- Tighter spacing for iPads & medium tablets --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .luxury-coin-wrapper {
+    margin-bottom: 10px !important;   /* reduce big empty gap */
+    height: 260px !important;         /* slightly shorter wrapper */
+  }
+
+  header h1 {
+    margin-top: -4px !important;      /* pull heading upward */
+    margin-bottom: 14px !important;   /* tighten spacing under heading */
+  }
+}
+
+
 
 
 
