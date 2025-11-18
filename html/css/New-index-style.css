@@ -378,7 +378,7 @@ header::before {
 .luxury-coin {
   width: 260px;
   height: 260px;
-  background-image: url("/html/assets/coin-1.png");
+  background-image: url("/assets/coin-1.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
