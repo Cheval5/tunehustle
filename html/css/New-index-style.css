@@ -511,6 +511,19 @@ header p {
   }
 }
 
+@media (max-width: 480px) {
+
+  .luxury-coin-wrapper {
+    margin-bottom: 4px !important;   /* was ~20px visually */
+    height: 240px !important;        /* reduce vertical container height */
+  }
+
+  header h1 {
+    margin-top: -6px !important;     /* pull title upward */
+    margin-bottom: 10px !important;  /* tighter spacing below */
+  }
+}
+
 
 
 
