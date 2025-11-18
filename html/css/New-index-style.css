@@ -455,7 +455,7 @@ header p {
   max-width: 650px;
   margin: 0 auto 26px;
   font-size: 1.2em;
-  color: #2b2a2e;
+  color: #1e1e22;
   line-height: 1.65;
 }
 
@@ -578,7 +578,7 @@ header h1 {
 
 header p {
   font-size: 1.2em;
-  color: #272427;
+  color: #1e1e22;
   max-width: 650px;
   margin: 0 auto 28px;
   line-height: 1.7;
@@ -622,13 +622,18 @@ header p {
 .kits-feature {
   background: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
   border-radius: 18px;
-  box-shadow: 0 4px 22px rgba(123,47,247,0.06), 0 2px 16px rgba(0,196,204,0.04);
-  padding: 70px 0 60px;
+  box-shadow: 
+    0 4px 22px rgba(123,47,247,0.06),
+    0 2px 16px rgba(0,196,204,0.04);
+  
   max-width: 950px;
-  margin: 40px auto 50px;
+  margin: 18px auto 50px;   /* tighter top space */
+  
+  padding: 55px 0 60px;     /* reduced top padding */
   text-align: center;
   transition: transform 0.3s ease;
 }
+
 .kits-heading {
   font-size: 3em;
   margin-bottom: 22px;
@@ -683,7 +688,7 @@ header p {
 }
 .kit-card p {
   font-size: 1.1em;
-  color: #4b2450;
+  color: #1e1e22;
   margin-bottom: 20px;
 }
 
@@ -716,11 +721,11 @@ header p {
   margin-bottom: 6px;
   font-weight: 650;
   font-size: 1.1em;
-  color: #525258;
+  color: #1e1e22;
 }
 .content p {
   margin: 0;
-  color: #302e30;
+  color: #1e1e22;;
   font-size: 1.05em;
   line-height: 1.6;
 }
