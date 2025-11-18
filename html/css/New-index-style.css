@@ -247,208 +247,269 @@ nav .logo {
 }
 
 
-/* ==============================
-   HERO HEADER
-   ============================== */
+/* ======================================
+   HERO SECTION (Clean, Responsive)
+====================================== */
+
 header {
   position: relative;
   margin: 40px auto;
-  border-radius: 32px;
   max-width: 940px;
-  overflow: visible;
+  border-radius: 32px;
+  background: #ffffff;
   text-align: center;
-  background: #fff;
-  box-shadow: 0 8px 30px rgba(123,47,247,0.08);
   padding: 80px 40px 70px;
+  box-shadow: 0 8px 30px rgba(123,47,247,0.08);
+  overflow: visible;
 }
 
-/* Softer, whiter animated lines background */
+/* Animated luxury soft-line background */
 header::before {
   content: "";
   position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 120%;
+  top: -15%;
+  left: -8%;
+  width: 116%;
   height: 140%;
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(36px);
+  opacity: 0.55; /* ↓ softer overall */
+  
   background:
+    /* very soft lines */
     repeating-linear-gradient(
       115deg,
-      rgba(255, 255, 255, 0.6) 0px,
-      rgba(255, 255, 255, 0.6) 2px,
-      rgba(123, 47, 247, 0.05) 4px,
-      rgba(0, 196, 204, 0.03) 6px,
-      transparent 8px
+      rgba(255,255,255,0.55) 0px,
+      rgba(255,255,255,0.55) 2px,
+      rgba(123,47,247,0.03) 4px, /* << reduced from .07 */
+      rgba(0,196,204,0.02) 6px,  /* << reduced from .05 */
+      transparent 9px
     ),
+
+    /* softer radial white glow */
     radial-gradient(
       circle at 50% 40%,
-      rgba(255, 255, 255, 0.8) 0%,
-      rgba(123, 47, 247, 0.05) 30%,
-      rgba(0, 196, 204, 0.04) 50%,
+      rgba(255,255,255,0.75) 0%,
+      rgba(123,47,247,0.05) 30%, /* softer tint */
+      rgba(0,196,204,0.03) 55%,
       transparent 90%
     );
-  z-index: -1;
-  border-radius: inherit;
-  filter: blur(45px);
-  opacity: 0.85;
-  background-size: 220% 220%;
-  animation: movingLines 28s linear infinite, subtleGlow 22s ease-in-out infinite alternate;
+
+  background-size: 200% 200%;
+
+  animation:
+    heroLines 40s linear infinite,   /* slower */
+    heroGlow 26s ease-in-out infinite alternate; /* softer glow */
 }
 
-@keyframes movingLines {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 200%; }
+/* Slow drifting lines */
+@keyframes heroLines {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 180% 180%; }
 }
 
-@keyframes subtleGlow {
-  0% { opacity: 0.75; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.02); }
-  100% { opacity: 0.75; transform: scale(1); }
+/* Very soft breathing glow */
+@keyframes heroGlow {
+  0%   { opacity: 0.5; transform: scale(1); }
+  50%  { opacity: 0.65; transform: scale(1.015); }
+  100% { opacity: 0.5; transform: scale(1); }
 }
 
-/* Mobile version — less blur for clarity, keep softness */
-@media (max-width: 600px) {
-  header::before {
-    top: -30%;
-    height: 160%;
-    filter: blur(35px);
-    opacity: 0.9;
-    background:
-      repeating-linear-gradient(
-        115deg,
-        rgba(255, 255, 255, 0.65) 0px,
-        rgba(255, 255, 255, 0.65) 2px,
-        rgba(123, 47, 247, 0.04) 4px,
-        rgba(0, 196, 204, 0.03) 6px,
-        transparent 8px
-      ),
-      radial-gradient(
-        circle at 50% 40%,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(123, 47, 247, 0.04) 30%,
-        rgba(0, 196, 204, 0.03) 50%,
-        transparent 90%
-      );
-  }
-}
 
-/* ======== LUXURY FLYING COIN ======== */
-/* WRAPPER */
+
+/* ======================================
+   LUXURY COIN WRAPPER
+====================================== */
+
 .luxury-coin-wrapper {
   position: relative;
   width: 260px;
-  height: 320px;
-  margin: 0 auto;
+  height: 310px;
+  margin: 0 auto 22px; /* Option C (tight spacing) */
 }
 
 
-/* ============================
-   AURA RING (glowing halo)
-============================ */
+/* ======================================
+   GOLD AURA RING
+====================================== */
+
 .aura-ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 330px;
-  height: 330px;
+  width: 320px;
+  height: 320px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   z-index: -2;
 
   background: radial-gradient(
     circle,
-    rgba(255,220,100,0.55) 0%,
-    rgba(255,210,80,0.35) 35%,
-    rgba(255,180,40,0.12) 60%,
+    rgba(255,235,160,0.6) 0%,
+    rgba(255,215,120,0.35) 40%,
+    rgba(255,190,60,0.18) 65%,
     rgba(255,180,0,0) 100%
   );
 
-  filter: blur(32px);
+  filter: blur(30px);
   animation: auraPulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes auraPulse {
-  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-  100% { transform: translate(-50%, -50%) scale(1.18); opacity: 1; }
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1.16); opacity: 1; }
 }
 
 
-/* ============================
-   COIN IMAGE
-============================ */
+/* ======================================
+   MAIN COIN (luxury version)
+====================================== */
+
 .luxury-coin {
   width: 260px;
   height: 260px;
-  background-image: url("/assets/coin-1.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url("/assets/coin-1.png") center/contain no-repeat;
   position: relative;
 
   filter:
     drop-shadow(0 18px 32px rgba(255,215,0,0.25))
-    drop-shadow(0 0 18px rgba(255,230,160,0.5));
+    drop-shadow(0 0 18px rgba(255,230,160,0.55));
 
   animation:
-    floatCoin 2.4s ease-in-out infinite,
-    tiltCoin 5s ease-in-out infinite,
-    pulseCoin 4.5s ease-in-out infinite,
-    shineSweep 3s linear infinite;
+    coinFloat 2.2s ease-in-out infinite,
+    coinTilt 5s ease-in-out infinite,
+    coinPulse 4.5s ease-in-out infinite;
 }
 
-
-/* FLOAT */
-@keyframes floatCoin {
+/* Float more (Option A) */
+@keyframes coinFloat {
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-28px); }
+  50%      { transform: translateY(-32px); }
 }
 
-/* TILT */
-@keyframes tiltCoin {
+/* Soft tilt */
+@keyframes coinTilt {
   0%, 100% { transform: rotate(0deg); }
-  33%      { transform: rotate(2deg); }
-  66%      { transform: rotate(-2deg); }
+  33%      { transform: rotate(1.8deg); }
+  66%      { transform: rotate(-1.8deg); }
 }
 
-/* BREATHING PULSE */
-@keyframes pulseCoin {
+/* Subtle breathing pulse */
+@keyframes coinPulse {
   0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.05); }
+  50%      { transform: scale(1.04); }
 }
 
 
-/* ============================
-   SHIMMER SWEEP (PREMIUM)
-============================ */
-/* SHIMMER — tuned for 260px coin */
+/* ======================================
+   GOLD SHIMMER (smooth, locked range)
+====================================== */
+
 .luxury-coin::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -40px;          /* starts just off the left edge */
-  width: 70px;          /* shimmer thickness */
+  left: -20px; 
+  width: 60px;
   height: 100%;
+  pointer-events: none;
+
   background: linear-gradient(
     115deg,
     rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.30) 35%,
-    rgba(255,255,255,0.9) 55%,   /* bright center */
-    rgba(255,255,255,0.30) 75%,
+    rgba(255,255,255,0.25) 40%,
+    rgba(255,255,255,0.85) 55%,
+    rgba(255,255,255,0.25) 75%,
     rgba(255,255,255,0) 100%
   );
+
   filter: blur(10px);
   transform: skewX(-18deg);
-  animation: shimmerLocked 3s ease-in-out infinite;
-  pointer-events: none;
+
+  animation: goldShimmer 3.2s ease-in-out infinite;
   opacity: 0;
 }
 
-@keyframes shimmerLocked {
-  0%   { left: -40px; opacity: 0; }
-  10%  { opacity: 1; }
-  50%  { left: 230px; opacity: 1; }  /* ends perfectly at right edge */
+@keyframes goldShimmer {
+  0%   { left: -20px; opacity: 0; }
+  12%  { opacity: 1; }
+  50%  { left: 200px; opacity: 1; } /* stays inside coin */
   90%  { opacity: 0; }
-  100% { left: 230px; opacity: 0; }
+  100% { left: 200px; opacity: 0; }
 }
+
+
+/* ======================================
+   HEADING & DESCRIPTION
+====================================== */
+
+header h1 {
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: #32323f;
+  margin: 2px 0 12px; /* Option A spacing */
+}
+
+header p {
+  max-width: 650px;
+  margin: 0 auto 26px;
+  font-size: 1.2em;
+  color: #2b2a2e;
+  line-height: 1.65;
+}
+
+
+/* ==============================
+   MOBILE RESPONSIVE HERO
+============================== */
+
+@media (max-width: 600px) {
+
+  .luxury-coin-wrapper {
+    width: 220px;
+    height: 270px;
+    margin-bottom: 14px;
+  }
+
+  .luxury-coin {
+    width: 220px;
+    height: 220px;
+  }
+
+  .aura-ring {
+    width: 260px;
+    height: 260px;
+  }
+
+  header {
+    padding: 60px 22px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  header p {
+    font-size: 1.05rem;
+    margin-bottom: 22px;
+  }
+
+  .luxury-coin::after {
+    width: 50px;
+    left: -16px;
+  }
+
+  @keyframes goldShimmer {
+    0%   { left: -16px; opacity: 0; }
+    12%  { opacity: 1; }
+    50%  { left: 165px; opacity: 1; }
+    90%  { opacity: 0; }
+    100% { left: 165px; opacity: 0; }
+  }
+}
+
 
 
 
@@ -480,13 +541,11 @@ header h1 {
   font-weight: 700;
   font-size: clamp(2.4rem, 5vw, 3.8rem);
   letter-spacing: 0.02em;
-  margin-bottom: 20px;
-  /* background: linear-gradient(120deg, #00C4CC, #7B2FF7, #FF4FD8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: fadeUp 1.4s ease both; */
-  color: #32323f;
+  margin-top: 8px;     /* tighter spacing under coin */
+  margin-bottom: 18px;
+  color: #2c2c34;
 }
+
 
 header p {
   font-size: 1.2em;
