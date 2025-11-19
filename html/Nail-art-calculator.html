@@ -1,242 +1,315 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Nail Service Pricing Calculator | Nail Tech Business Tool – Tune Hustle</title>
-  <meta name="description" content="Use this free nail service pricing calculator to set profitable prices for your nail bar or nail tech business. Perfect for beginner nail artists and side hustlers." />
-
-  <link rel="icon" type="image/svg+xml" href="assets/Favicon.svg" />
-  <link rel="apple-touch-icon" href="assets/Favicon.svg" />
-
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nail Artist Business Calculator</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="assets/Favicon.svg" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/Favicon.svg">
 
+  <link rel="stylesheet" href="css/nail-bar-calculator.css" />
   <style>
-    body {
+    /* body {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Poppins", sans-serif;
-      background: radial-gradient(circle at top, #fde9f5, #fdf2f8 30%, #f9fafb 75%);
-      color: #111827;
-    }
-
-    .page-shell { padding: 2rem 1rem 3rem; }
-    .card-surface {
-      background: #ffffff;
-      border-radius: 1rem;
-      box-shadow: 0 12px 28px rgba(149, 114, 178, 0.12);
-    }
-
-    .primary-btn {
-      background: linear-gradient(135deg, #ec4899, #a855f7);
-      color: #fff;
-      border-radius: 999px;
-      font-weight: 600;
-      box-shadow: 0 8px 20px rgba(236,72,153,0.22);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(236,72,153,0.30);
-    }
-
-    .input-soft {
-      border-radius: 0.7rem;
-      border: 2px solid #fce7f3;
-      background: #fff7fb;
-      transition: all 0.15s ease;
-    }
-
-    .input-soft:focus {
-      border-color: #ec4899;
-      background: #ffffff;
-      box-shadow: 0 0 0 1px rgba(236,72,153,0.25);
-      outline: none;
-    }
-
-    .service-card {
-      border-radius: 0.85rem;
-      background: #fff7fb;
-      border: 1px solid #fce7f3;
-    }
-
-    .pill {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.65rem;
-      background: rgba(255,255,255,0.85);
-      border-radius: 999px;
-      border: 1px solid #f3e8ff;
-    }
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;   
+    } */
+    /* html {
+      height: 100%;
+    } */
   </style>
-</head>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="min-h-full">
 
-<body>
-  <div class="page-shell max-w-4xl mx-auto">
-
-    <!-- Header -->
-    <header class="text-center mb-10">
-      <p class="text-pink-600 text-sm font-semibold uppercase tracking-wide mb-2">💅 Nail Business Tool</p>
-      <h1 class="text-3xl md:text-4xl font-bold text-pink-600 mb-3">Nail Service Pricing Calculator</h1>
-      <p class="text-gray-600 max-w-xl mx-auto">
-        Calculate what to charge for each nail service based on your supply costs, time, and income goals.
-      </p>
-    </header>
-
-    <!-- Layout -->
-    <div class="grid gap-8 md:grid-cols-2 items-start">
-
-      <!-- Left: Form -->
-      <section class="card-surface p-6">
-        <h2 class="text-xl font-semibold text-pink-700 mb-4">Add a New Service</h2>
-
-        <form id="calculator-form" class="space-y-4">
-
-          <div>
-            <label class="text-sm font-medium">Service Name</label>
-            <input id="service-name" required placeholder="Full Set Acrylic"
-                   class="w-full px-3 py-2 input-soft" />
-          </div>
-
-          <div>
-            <label class="text-sm font-medium">Cost of Supplies ($)</label>
-            <input id="cost-supplies" type="number" min="0" step="0.01" required
-                   placeholder="12.50" class="w-full px-3 py-2 input-soft" />
-          </div>
-
-          <div>
-            <label class="text-sm font-medium">Time Required (minutes)</label>
-            <input id="time-minutes" type="number" required
-                   placeholder="75" class="w-full px-3 py-2 input-soft" />
-          </div>
-
-          <div>
-            <label class="text-sm font-medium">Your Hourly Rate Goal ($)</label>
-            <input id="hourly-rate" type="number" min="0" step="0.01" required
-                   placeholder="45.00" class="w-full px-3 py-2 input-soft" />
-          </div>
-
-          <div>
-            <label class="text-sm font-medium">Profit Margin (%)</label>
-            <input id="profit-margin" type="number" min="0" max="100" value="20" required
-                   class="w-full px-3 py-2 input-soft" />
-          </div>
-
-          <button id="calculate-btn" class="primary-btn py-3 w-full">
-            Calculate & Save Service
-          </button>
-
-        </form>
-      </section>
-
-      <!-- Right: Results -->
-      <section class="card-surface p-6">
-        <h2 class="text-xl font-semibold text-pink-700 mb-4">Your Services</h2>
-
-        <div id="services-list" class="space-y-3">
-          <p class="text-gray-400 text-center py-6 border border-dashed border-pink-200 rounded-lg">
-            No services yet — add one to begin.
-          </p>
-        </div>
-
-        <p class="mt-6 text-gray-600 text-center text-sm">
-          Want the full Nail Bar Side Hustle plan?
-          <a href="New-product-1.html" class="text-pink-600 font-semibold">View the complete kit →</a>
-        </p>
-      </section>
-
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
+      </a>
     </div>
+
+    <div class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="New-product-1.html">Nail Bar Kit</a>
+      <a href="Nail-art-calculator.html">Side Hustle Calculators</a>
+    </div>
+
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Original calculator content starts here -->
+  <div class="min-h-full p-6" style="background-color: #fdf2f8;">
+
+  <div class="min-h-full p-6" style="background-color: #fdf2f8;">
+   <div class="max-w-4xl mx-auto"><!-- Header -->
+    <div class="text-center mb-8">
+     <h1 id="calculator-title" class="text-4xl font-bold mb-2" style="color: #ec4899;">Nail Artist Business Calculator</h1>
+     <p class="text-gray-600">Calculate pricing for your nail services</p>
+    </div><!-- Calculator Form -->
+    <div class="rounded-lg shadow-lg p-6 mb-6" style="background-color: #ffffff;">
+     <h2 class="text-2xl font-semibold mb-4" style="color: #db2777;">Add New Service</h2>
+     <form id="calculator-form" class="space-y-4">
+      <div><label for="service-name" class="block text-sm font-medium mb-1" style="color: #374151;">Service Name</label> <input type="text" id="service-name" required placeholder="e.g., Full Set Acrylic" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      </div>
+      <div><label for="cost-supplies" class="block text-sm font-medium mb-1" style="color: #374151;">Cost of Supplies ($)</label> <input type="number" id="cost-supplies" required min="0" step="0.01" placeholder="10.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      </div>
+      <div><label for="time-minutes" class="block text-sm font-medium mb-1" style="color: #374151;">Time Required (minutes)</label> <input type="number" id="time-minutes" required min="1" placeholder="60" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      </div>
+      <div><label for="hourly-rate" class="block text-sm font-medium mb-1" style="color: #374151;"><span id="hourly-rate-label">Your Hourly Rate</span> ($)</label> <input type="number" id="hourly-rate" required min="0" step="0.01" placeholder="50.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      </div>
+      <div><label for="profit-margin" class="block text-sm font-medium mb-1" style="color: #374151;">Profit Margin (%)</label> <input type="number" id="profit-margin" required min="0" max="100" value="20" placeholder="20" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      </div><button type="submit" id="calculate-btn" class="w-full py-3 rounded-lg font-semibold text-white transition-colors" style="background-color: #ec4899;"> Calculate &amp; Save Service </button>
+     </form>
+    </div><!-- Saved Services -->
+    <div class="rounded-lg shadow-lg p-6" style="background-color: #ffffff;">
+     <h2 class="text-2xl font-semibold mb-4" style="color: #db2777;">Your Services</h2>
+     <div id="services-list" class="space-y-3">
+      <p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>
+     </div>
+    </div>
+   </div>
   </div>
-
-  <!-- JS: LocalStorage Only -->
   <script>
-    const key = "tuneHustleNailServices";
-    let services = [];
+    const defaultConfig = {
+      calculator_title: "Nail Artist Business Calculator",
+      default_hourly_label: "Your Hourly Rate",
+      background_color: "#fdf2f8",
+      surface_color: "#ffffff",
+      text_color: "#374151",
+      primary_action_color: "#ec4899",
+      secondary_action_color: "#db2777"
+    };
 
-    const form = document.getElementById("calculator-form");
-    const list = document.getElementById("services-list");
+    let currentData = [];
+    let isInitialized = false;
 
-    function loadServices() {
-      const saved = localStorage.getItem(key);
-      services = saved ? JSON.parse(saved) : [];
-      renderServices();
+    const dataHandler = {
+      onDataChanged(data) {
+        currentData = data;
+        renderServices(data);
+      }
+    };
+
+    async function onConfigChange(config) {
+      const title = config.calculator_title || defaultConfig.calculator_title;
+      const hourlyLabel = config.default_hourly_label || defaultConfig.default_hourly_label;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      document.getElementById('calculator-title').textContent = title;
+      document.getElementById('hourly-rate-label').textContent = hourlyLabel;
+      document.body.querySelector('.min-h-full').style.backgroundColor = backgroundColor;
+      
+      const surfaces = document.querySelectorAll('.rounded-lg.shadow-lg');
+      surfaces.forEach(surface => {
+        surface.style.backgroundColor = surfaceColor;
+      });
+
+      const labels = document.querySelectorAll('label, .text-gray-600, .text-gray-500');
+      labels.forEach(label => {
+        label.style.color = textColor;
+      });
+
+      document.getElementById('calculator-title').style.color = primaryColor;
+      const headings = document.querySelectorAll('h2');
+      headings.forEach(h => {
+        h.style.color = secondaryColor;
+      });
+
+      document.getElementById('calculate-btn').style.backgroundColor = primaryColor;
     }
 
-    function saveServices() {
-      localStorage.setItem(key, JSON.stringify(services));
-    }
-
-    function renderServices() {
-      if (!services.length) {
-        list.innerHTML = `
-          <p class="text-gray-400 text-center py-6 border border-dashed border-pink-200 rounded-lg">
-            No services yet — add one to begin.
-          </p>`;
+    function renderServices(data) {
+      const container = document.getElementById('services-list');
+      
+      if (data.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>';
         return;
       }
 
-      list.innerHTML = services
-        .sort((a, b) => b.createdAt - a.createdAt)
-        .map(s => `
-        <div class="service-card p-4">
-          <div class="flex justify-between mb-2">
-            <h3 class="text-pink-700 font-semibold">${s.name}</h3>
-            <strong class="text-pink-600 text-lg">$${s.price.toFixed(2)}</strong>
-          </div>
+      const sortedData = [...data].sort((a, b) => 
+        new Date(b.created_at) - new Date(a.created_at)
+      );
 
-          <div class="flex flex-wrap gap-2 text-xs mt-2">
-            <span class="pill">💰 Supplies: $${s.supplies.toFixed(2)}</span>
-            <span class="pill">⏱ ${s.time} min</span>
-            <span class="pill">💵 Hourly: $${s.hourly.toFixed(2)}</span>
-            <span class="pill">📈 Margin: ${s.margin}%</span>
+      container.innerHTML = sortedData.map(service => `
+        <div class="border-2 rounded-lg p-4" style="border-color: #fce7f3; background-color: #fdf2f8;">
+          <div class="flex justify-between items-start mb-3">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1" style="color: #db2777;">${escapeHtml(service.service_name)}</h3>
+              <div class="text-3xl font-bold" style="color: #ec4899;">$${service.final_price.toFixed(2)}</div>
+            </div>
+            <button 
+              onclick="deleteService('${service.__backendId}')"
+              class="px-3 py-1 rounded text-white text-sm"
+              style="background-color: #f43f5e;"
+            >
+              Delete
+            </button>
           </div>
-
-          <div class="text-right mt-3">
-            <button onclick="deleteService(${s.createdAt})"
-                    class="text-rose-500 text-xs">Delete</button>
+          <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
+            <div>💰 Supplies: $${service.cost_of_supplies.toFixed(2)}</div>
+            <div>⏱️ Time: ${service.time_minutes} min</div>
+            <div>💵 Hourly Rate: $${service.hourly_rate.toFixed(2)}</div>
+            <div>📈 Margin: ${service.profit_margin}%</div>
           </div>
         </div>
-      `).join("");
+      `).join('');
     }
 
-    function deleteService(id) {
-      services = services.filter(s => s.createdAt !== id);
-      saveServices();
-      renderServices();
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
     }
 
-    form.addEventListener("submit", (e) => {
+    async function deleteService(backendId) {
+      const service = currentData.find(s => s.__backendId === backendId);
+      if (!service) return;
+
+      const result = await window.dataSdk.delete(service);
+      if (!result.isOk) {
+        alert('Failed to delete service. Please try again.');
+      }
+    }
+
+    document.getElementById('calculator-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      
+      if (currentData.length >= 999) {
+        alert('Maximum limit of 999 services reached. Please delete some services first.');
+        return;
+      }
 
-      const name = document.getElementById("service-name").value.trim();
-      const supplies = parseFloat(document.getElementById("cost-supplies").value);
-      const time = parseInt(document.getElementById("time-minutes").value);
-      const hourly = parseFloat(document.getElementById("hourly-rate").value);
-      const margin = parseFloat(document.getElementById("profit-margin").value);
+      const btn = document.getElementById('calculate-btn');
+      btn.disabled = true;
+      btn.textContent = 'Calculating...';
 
-      const labor = (hourly / 60) * time;
-      const cost = supplies + labor;
-      const price = cost * (1 + margin / 100);
+      const serviceName = document.getElementById('service-name').value;
+      const costSupplies = parseFloat(document.getElementById('cost-supplies').value);
+      const timeMinutes = parseInt(document.getElementById('time-minutes').value);
+      const hourlyRate = parseFloat(document.getElementById('hourly-rate').value);
+      const profitMargin = parseFloat(document.getElementById('profit-margin').value);
 
-      services.push({
-        name,
-        supplies,
-        time,
-        hourly,
-        margin,
-        price,
-        createdAt: Date.now()
+      const laborCost = (hourlyRate / 60) * timeMinutes;
+      const totalCost = costSupplies + laborCost;
+      const finalPrice = totalCost * (1 + profitMargin / 100);
+
+      const result = await window.dataSdk.create({
+        id: Date.now().toString(),
+        service_name: serviceName,
+        cost_of_supplies: costSupplies,
+        time_minutes: timeMinutes,
+        hourly_rate: hourlyRate,
+        profit_margin: profitMargin,
+        final_price: finalPrice,
+        created_at: new Date().toISOString()
       });
 
-      saveServices();
-      renderServices();
-      form.reset();
-      document.getElementById("profit-margin").value = 20;
+      btn.disabled = false;
+      btn.textContent = 'Calculate & Save Service';
+
+      if (result.isOk) {
+        e.target.reset();
+        document.getElementById('profit-margin').value = 20;
+      } else {
+        alert('Failed to save service. Please try again.');
+      }
     });
 
-    loadServices();
-  </script>
+    async function init() {
+      const initResult = await window.dataSdk.init(dataHandler);
+      if (!initResult.isOk) {
+        console.error('Failed to initialize data SDK');
+        return;
+      }
+      isInitialized = true;
 
-</body>
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  config.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  config.surface_color = value;
+                  window.elementSdk.setConfig({ surface_color: value });
+                }
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  config.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => {
+                  config.primary_action_color = value;
+                  window.elementSdk.setConfig({ primary_action_color: value });
+                }
+              },
+              {
+                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => {
+                  config.secondary_action_color = value;
+                  window.elementSdk.setConfig({ secondary_action_color: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ["calculator_title", config.calculator_title || defaultConfig.calculator_title],
+            ["default_hourly_label", config.default_hourly_label || defaultConfig.default_hourly_label]
+          ])
+        });
+      }
+    }
+
+    init();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a12ac97111faacd',t:'MTc2MzU4NjQxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+ <script>
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("menu");
+
+  hamburger.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+
+  hamburger.addEventListener("keypress", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      menu.classList.toggle("active");
+    }
+  });
+</script>
+ 
+ </body>
 </html>
