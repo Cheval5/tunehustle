@@ -1,21 +1,29 @@
+
 /* ==============================
-   BASE BODY STYLES
-============================== */
+   BASE STYLES
+   ============================== */
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  color: #2e003c;
   background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);
   background-size: 200% 200%;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   position: relative;
+  animation: subtleShift 30s ease-in-out infinite alternate;
 }
 
-/* ==============================
-   NAVIGATION BAR
-============================== */
+/* optional: tone down blobs a bit more */
+.gradient-blob {
+  opacity: 0.14;
+  filter: blur(180px);
+}
+
+
+/* ====================== NAVIGATION ====================== */
 nav {
   position: sticky;
   top: 0;
@@ -32,26 +40,9 @@ nav {
   transition: all 0.35s ease;
 }
 
-nav .logo {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
+/* LOGO */
 
-.site-logo {
-  height: 67px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.site-logo:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-/* MENU LINKS */
+/* MENU */
 nav .menu {
   display: flex;
   align-items: center;
@@ -74,6 +65,7 @@ nav .menu a:hover {
   color: #7B2FF7;
 }
 
+/* Underline Accent */
 nav .menu a::after {
   content: "";
   position: absolute;
@@ -101,6 +93,7 @@ nav .menu a:hover::after {
   gap: 6px;
   width: 28px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .hamburger span {
@@ -111,25 +104,103 @@ nav .menu a:hover::after {
   border-radius: 2px;
 }
 
-/* ==============================
-   RESPONSIVE NAV
-============================== */
+/* SCROLL STATE */
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  padding: 14px 70px;
+  transition: all 0.35s ease;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   nav {
     padding: 14px 24px;
   }
-
   .menu {
     display: none;
   }
-
   .hamburger {
     display: flex;
   }
+}
 
-  /* Dropdown menu */
-  .menu.active {
+/* --- Logo Styling --- */
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;        /* ✨ prevents shrinking on mobile */
+}
+
+
+.site-logo {
+  height: 67px;          /* desktop size */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.site-logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* --- RESPONSIVE LOGO SIZES --- */
+@media (max-width: 1024px) {
+  .site-logo {
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-logo {
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo {
+    height: 42px;
+  }
+}
+
+/* Ensure hamburger doesn’t push logo smaller */
+.hamburger {
+  flex-shrink: 0;
+}
+
+
+/* ====================== MOBILE MENU REFINEMENT ====================== */
+@media (max-width: 768px) {
+  nav {
+    padding: 14px 24px;
+    justify-content: space-between;
+  }
+
+  /* Reorder elements for balance */
+
+  .hamburger {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 30px;
+    cursor: pointer;
+    margin-left: auto; /* pushes it to the far right */
+  }
+
+  /* Add subtle breathing room between logo and burger */
+nav .logo {
+  display: flex;
+  align-items: center;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+  /* Dropdown menu style */
+  .menu {
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 70px;
@@ -144,29 +215,34 @@ nav .menu a:hover::after {
     animation: menuSlideDown 0.25s ease;
   }
 
+  .menu.active {
+    display: flex;
+  }
+
   .menu a {
-    padding: 12px 0;
+    color: #2d2d38;
+    font-weight: 600;
+    text-transform: uppercase;
     font-size: 0.95em;
+    padding: 12px 0;
     letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+  }
+
+  .menu a:hover {
+    background: linear-gradient(90deg, #7B2FF7, #00C4CC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   @keyframes menuSlideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-}
-
-/* ==============================
-   SMALLER LOGO SIZES
-============================== */
-@media (max-width: 1024px) {
-  .site-logo { height: 50px; }
-}
-
-@media (max-width: 768px) {
-  .site-logo { height: 45px; }
-}
-
-@media (max-width: 480px) {
-  .site-logo { height: 42px; }
 }
