@@ -207,24 +207,31 @@ document.getElementById('calculator-form').addEventListener('submit', function (
 
   const container = document.getElementById('services-list');
 
-  container.innerHTML = `
-    <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
-      <div class="flex justify-between items-start mb-3">
-        <div class="flex-1">
-          <h3 class="text-xl font-bold mb-1" style="color: #2c2c34;">${serviceName}</h3>
-          <div class="text-3xl font-bold" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;">$${finalPrice.toFixed(2)}</div>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
-        <div>💰 Supplies: $${costSupplies.toFixed(2)}</div>
-        <div>⏱️ Time: ${timeMinutes} min</div>
-        <div>💵 Hourly Rate: $${hourlyRate.toFixed(2)}</div>
-        <div>📈 Margin: ${profitMargin}%</div>
+container.innerHTML = `
+  <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+    <div class="flex justify-between items-start mb-3">
+      <div class="flex-1">
+        <h3 class="text-xl font-bold mb-1" style="color: #2c2c34;">${serviceName}</h3>
+        <div class="text-3xl font-bold" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">$${finalPrice.toFixed(2)}</div>
+
+        <!-- NEW LINE: Tax note -->
+        <p style="font-size:0.90em; color:#1e1e22; margin-top:6px;">
+          Tax is not included in this price.
+        </p>
       </div>
     </div>
-  `;
+
+    <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
+      <div>💰 Supplies: $${costSupplies.toFixed(2)}</div>
+      <div>⏱️ Time: ${timeMinutes} min</div>
+      <div>💵 Hourly Rate: $${hourlyRate.toFixed(2)}</div>
+      <div>📈 Margin: ${profitMargin}%</div>
+    </div>
+  </div>
+`;
+
 });
 </script>
 
