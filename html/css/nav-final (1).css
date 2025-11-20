@@ -1,0 +1,163 @@
+/* Remove nav padding on desktop */
+body.home,
+body.product {
+  padding-top: 0;
+}
+
+/* Apply nav spacing ONLY on mobile */
+@media (max-width: 768px) {
+  body.home,
+  body.product {
+    padding-top: 80px; /* adjust if needed */
+  }
+}
+
+/* Prevent Tailwind from overriding nav styles */
+.th-nav,
+.th-nav * {
+  all: revert;
+}
+
+
+
+/* ==================================================
+   SHARED NAVIGATION (TuneHustle)
+================================================== */
+
+.th-nav {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+/* Logo */
+.th-nav .site-logo {
+  height: 40px;      /* SMALLER LOGO */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Desktop menu */
+.th-nav .th-menu {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+  flex-direction: row !important;
+  white-space: nowrap !important;
+}
+
+/* Desktop hamburger hidden */
+.th-nav .hamburger {
+  display: none;
+}
+
+/* Desktop link styles */
+.th-nav .th-menu a {
+  color: #2d2d38;
+  font-weight: 600;
+  font-size: 0.97em;
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* Hover underline */
+.th-nav .th-menu a::after {
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,#7B2FF7,#00C4CC);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:.3s;
+}
+
+.th-nav .th-menu a:hover::after {
+  transform:scaleX(1);
+  transform-origin:left;
+}
+
+/* ==================================================
+   MOBILE NAV
+================================================== */
+
+@media (max-width: 768px) {
+
+  .th-nav {
+    padding: 14px 22px;
+  }
+
+  /* hide menu on mobile */
+  .th-nav .th-menu {
+    display: none !important;
+    flex-direction: column !important;
+    white-space: normal !important;
+  }
+
+  /* show hamburger on mobile */
+  .th-nav .hamburger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 6px;
+    width: 28px;
+    cursor: pointer;
+  }
+
+  .th-nav .hamburger span {
+    height: 3px;
+    background: #7B2FF7;
+    border-radius: 3px;
+  }
+
+  /* mobile dropdown */
+  .th-nav .th-menu.active {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 70px !important;
+    right: 20px !important;
+    width: 220px;
+    background: white;
+    padding: 18px 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 26px rgba(123,47,247,0.12);
+    text-align: center;
+    z-index: 99999 !important;
+  }
+}
+
+/* Fix dropdown overlap */
+.th-nav .th-menu.active {
+  position: fixed !important;
+  top: 70px !important;
+  right: 20px !important;
+}
+
+/* Make nav fixed only on mobile for index + product pages */
+@media (max-width: 768px) {
+  body.home .th-nav,
+  body.product .th-nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+
+  /* Push content down so hero doesn’t hide behind fixed nav */
+  body.home,
+  body.product {
+    padding-top: 80px !important;
+  }
+}

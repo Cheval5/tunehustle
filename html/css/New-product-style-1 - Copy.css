@@ -1353,6 +1353,21 @@ footer {
 
 @media (max-width: 768px) {
   .pricing-grid { gap: 20px; }
+  nav { display: flex; justify-content: flex-end; align-items: center; height: 60px; padding: 0 20px; }
+  nav .menu { display: none; }
+  .hamburger { display: flex; }
+  nav .menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 180px;
+    background: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
 }
 @media (max-width: 600px) {
   .cta-button { padding: 12px 28px; font-size: 1em; }
@@ -1384,7 +1399,7 @@ footer {
   padding-bottom: 80px;
 }
 
-/* 🧭 Hero section starts a bit higher */
+/* 🧭 Hero section starts a bit higher (closer to navigation) */
 .cover-hero:first-of-type {
   margin-top: 60px;
 }
@@ -1607,6 +1622,9 @@ footer {
   }
 }
 
+/* ======= MOBILE NAV GAP FIX ======= */
+/* ===== MOBILE NAV SPACING + HERO FIX ===== */
+/* ====== FIX TOP GAP UNDER NAVBAR ON MOBILE ====== */
 
 /* ======= FINAL FIX FOR EXTRA TOP SPACE ======= */
 @media (max-width: 900px) {
@@ -1656,9 +1674,18 @@ footer {
     background-color: #fff;
   }
 
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 999;
+  }
 
   header {
-    margin-top: 75px; /* creates space for the fixed */
+    margin-top: 75px; /* creates space for the fixed nav */
     padding-top: 20px;
   }
 
@@ -1722,11 +1749,12 @@ footer {
   }
 }
 
+/* FIX: Apply mobile nav spacing only on pages that use .cover-hero (homepage) */
 
 @media (max-width: 480px) {
 
-  /* ONLY fix on homepage */
-  body.home{
+  /* ONLY fix nav on homepage */
+  body.home nav {
     position: fixed;
     top: 0;
     left: 0;
