@@ -65,7 +65,7 @@
           max-width: 720px;>Calculate pricing for your nail services</p>
     </div><!-- Calculator Form -->
     <div class="rounded-lg shadow-lg p-6 mb-6" style="background-color: #ffffff;">
-     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;">Add New Service</h2>
      <form id="calculator-form" class="space-y-4">
@@ -82,9 +82,9 @@
      </form>
     </div><!-- Saved Services -->
     <div class="rounded-lg shadow-lg p-6" style="background-color: #ffffff;">
-     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
           -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;">Your Services</h2>
+          -webkit-text-fill-color: transparent;">Result</h2>
      <div id="services-list" class="space-y-3">
       <p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>
      </div>
@@ -113,8 +113,10 @@ document.getElementById('calculator-form').addEventListener('submit', function (
     <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
       <div class="flex justify-between items-start mb-3">
         <div class="flex-1">
-          <h3 class="text-xl font-bold mb-1" style="color: #db2777;">${serviceName}</h3>
-          <div class="text-3xl font-bold" style="color: #ec4899;">$${finalPrice.toFixed(2)}</div>
+          <h3 class="text-xl font-bold mb-1" style="color: #2c2c34;">${serviceName}</h3>
+          <div class="text-3xl font-bold" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">$${finalPrice.toFixed(2)}</div>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
