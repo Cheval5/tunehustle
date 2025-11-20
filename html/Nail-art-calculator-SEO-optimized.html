@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nail Service Pricing Calculator | Nail Artist Profit Tool</title>
+<meta name="description" content="Use this free Nail Artist Business Calculator to price nail services, calculate profit margins, and set accurate rates for your salon or side hustle.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Nail Artist Business Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "A calculator for nail artists to price services, calculate profit, and estimate hourly earnings."
+}
+</script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="assets/Favicon.svg" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/Favicon.svg">
+  <link rel="stylesheet" href="css/nav-final (1).css" />
+  <style>
+    /* body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;   
+    } */
+    /* html {
+      height: 100%;
+    } */
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="min-h-full calculator">
+
+<!-- Navigation -->
+<!-- Navigation -->
+<nav class="th-nav">
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
+    </a>
+  </div>
+
+  <div class="th-menu" id="th-menu">
+    <a href="index.html">Home</a>
+    <a href="New-product-1.html">Nail Bar Kit</a>
+    <a href="Nail-art-calculator-standalone-patched.html">Side Hustle Calculators</a>
+  </div>
+
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+
+  <!-- Original calculator content starts here -->
+  <div class="min-h-full p-6" style="background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);">
+  <div class="min-h-full p-6" style="background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);">
+   <div class="max-w-4xl mx-auto"><!-- Header -->
+    <div class="text-center mb-8">
+     <h1 id="calculator-title" class="text-4xl font-bold mb-2" style="font-size: 2.2em;
+          font-weight: 700;
+          background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 16px;
+          letter-spacing: 0.5px;">Nail Artist Business Calculator</h1>
+     <p class="text-gray-600"style=:  font-size: 1.15em;
+          color: #4b3c70;
+          font-weight: 500;
+          line-height: 1.7;
+          margin: 0 auto;
+          max-width: 720px;>Calculate pricing for your nail services</p>
+    </div><!-- Calculator Form -->
+    <div class="rounded-lg shadow-lg p-6 mb-6" style="background-color: #ffffff;">
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">Add New Service</h2>
+     <form id="calculator-form" class="space-y-4">
+      <div><label for="service-name" class="block text-sm font-medium mb-1" style="color: #374151;">Service Name</label> <input type="text" id="service-name" required placeholder="e.g., Full Set Acrylic" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      </div>
+      <div><label for="cost-supplies" class="block text-sm font-medium mb-1" style="color: #374151;">Cost of Supplies ($)</label> <input type="number" id="cost-supplies" required min="0" step="0.01" placeholder="10.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      </div>
+      <div><label for="time-minutes" class="block text-sm font-medium mb-1" style="color: #374151;">Time Required (minutes)</label> <input type="number" id="time-minutes" required min="1" placeholder="60" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      </div>
+      <div><label for="hourly-rate" class="block text-sm font-medium mb-1" style="color: #374151;"><span id="hourly-rate-label">Your Hourly Rate</span> ($)</label> <input type="number" id="hourly-rate" required min="0" step="0.01" placeholder="50.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      </div>
+      <div><label for="profit-margin" class="block text-sm font-medium mb-1" style="color: #374151;">Profit Margin (%)</label> <input type="number" id="profit-margin" required min="0" max="100" value="20" placeholder="20" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      </div><button type="submit" id="calculate-btn" class="w-full py-3 rounded-lg font-semibold text-white transition-colors" style="background: linear-gradient(135deg, #6A11CB, #00C4CC);"> Calculate Service </button>
+     </form>
+    </div><!-- Saved Services -->
+    <div class="rounded-lg shadow-lg p-6" style="background-color: #ffffff;">
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">Result</h2>
+     <div id="services-list" class="space-y-3">
+      <p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+<script>
+// Simple standalone calculator: no saving, no SDK
+document.getElementById('calculator-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const serviceName = (document.getElementById('service-name').value || '').trim() || 'Service';
+  const costSupplies = parseFloat(document.getElementById('cost-supplies').value) || 0;
+  const timeMinutes = parseFloat(document.getElementById('time-minutes').value) || 0;
+  const hourlyRate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+  const profitMargin = parseFloat(document.getElementById('profit-margin').value) || 0;
+
+  const laborCost = (hourlyRate / 60) * timeMinutes;
+  const totalCost = costSupplies + laborCost;
+  const finalPrice = totalCost * (1 + profitMargin / 100);
+
+  const container = document.getElementById('services-list');
+
+  container.innerHTML = `
+    <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      <div class="flex justify-between items-start mb-3">
+        <div class="flex-1">
+          <h3 class="text-xl font-bold mb-1" style="color: #2c2c34;">${serviceName}</h3>
+          <div class="text-3xl font-bold" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">$${finalPrice.toFixed(2)}</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
+        <div>💰 Supplies: $${costSupplies.toFixed(2)}</div>
+        <div>⏱️ Time: ${timeMinutes} min</div>
+        <div>💵 Hourly Rate: $${hourlyRate.toFixed(2)}</div>
+        <div>📈 Margin: ${profitMargin}%</div>
+      </div>
+    </div>
+  `;
+});
+</script>
+
+  <!-- Menu JS -->
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("th-menu");
+
+hamburger.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+
+// Close menu on link click
+document.querySelectorAll(".th-nav .th-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("active");
+  });
+});
+</script>
+
+
+<section class="mt-10 max-w-3xl mx-auto text-gray-700">
+  <h2 class="text-2xl font-semibold mb-3" style="background: linear-gradient(120deg, #411288, #00C4CC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2em; font-weight: 700; margin-bottom: 24px;">FAQs</h2>
+  
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">How do I calculate the right price for acrylic or gel nail services?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">To price acrylic or gel services correctly, add your supply cost, your labour cost based on time, and a profit margin. A nail pricing calculator makes this easy by doing the math for you, so you can set a fair rate that reflects your skill, product use, and time.</p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">What factors should I include when setting my hourly rate as a nail technician?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">Your hourly rate should cover your experience, overhead expenses, local market rates, and the level of detail your services require. Many nail artists use an income calculator to estimate a rate that keeps their business profitable without undercharging.</p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">How can a nail salon profit calculator help me understand my earnings?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">A profit calculator shows your true income by comparing your service price to your supply costs and time spent. It helps nail artists see which services bring in the highest profit, where prices may need adjusting, and how to plan for sustainable growth.</p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">What’s the best way to estimate supply costs for different nail services?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">
+  The easiest way is to list every product used for the service and divide the product cost by how many uses you get from each bottle or tool. A nail service pricing calculator automates this step, making your totals accurate and consistent.
+  </p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">How do I know if my nail service prices are profitable?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">
+  Your services are profitable when the final price covers your supply cost, your labour time, and a healthy profit margin. Using a nail artist business calculator helps you see exactly how much you’re earning per service so you can adjust your pricing with confidence.
+  </p>
+
+</section>
+
+
+</body>
+</html>
