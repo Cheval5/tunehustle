@@ -46,31 +46,45 @@
 
 
   <!-- Original calculator content starts here -->
-  <div class="min-h-full p-6" style="background-color: #fdf2f8;">
-
-  <div class="min-h-full p-6" style="background-color: #fdf2f8;">
+  <div class="min-h-full p-6" style="background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);">
+  <div class="min-h-full p-6" style="background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);">
    <div class="max-w-4xl mx-auto"><!-- Header -->
     <div class="text-center mb-8">
-     <h1 id="calculator-title" class="text-4xl font-bold mb-2" style="color: #ec4899;">Nail Artist Business Calculator</h1>
-     <p class="text-gray-600">Calculate pricing for your nail services</p>
+     <h1 id="calculator-title" class="text-4xl font-bold mb-2" style="font-size: 2.2em;
+          font-weight: 700;
+          background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 16px;
+          letter-spacing: 0.5px;">Nail Artist Business Calculator</h1>
+     <p class="text-gray-600"style=:  font-size: 1.15em;
+          color: #4b3c70;
+          font-weight: 500;
+          line-height: 1.7;
+          margin: 0 auto;
+          max-width: 720px;>Calculate pricing for your nail services</p>
     </div><!-- Calculator Form -->
     <div class="rounded-lg shadow-lg p-6 mb-6" style="background-color: #ffffff;">
-     <h2 class="text-2xl font-semibold mb-4" style="color: #db2777;">Add New Service</h2>
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">Add New Service</h2>
      <form id="calculator-form" class="space-y-4">
-      <div><label for="service-name" class="block text-sm font-medium mb-1" style="color: #374151;">Service Name</label> <input type="text" id="service-name" required placeholder="e.g., Full Set Acrylic" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      <div><label for="service-name" class="block text-sm font-medium mb-1" style="color: #374151;">Service Name</label> <input type="text" id="service-name" required placeholder="e.g., Full Set Acrylic" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
       </div>
-      <div><label for="cost-supplies" class="block text-sm font-medium mb-1" style="color: #374151;">Cost of Supplies ($)</label> <input type="number" id="cost-supplies" required min="0" step="0.01" placeholder="10.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      <div><label for="cost-supplies" class="block text-sm font-medium mb-1" style="color: #374151;">Cost of Supplies ($)</label> <input type="number" id="cost-supplies" required min="0" step="0.01" placeholder="10.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
       </div>
-      <div><label for="time-minutes" class="block text-sm font-medium mb-1" style="color: #374151;">Time Required (minutes)</label> <input type="number" id="time-minutes" required min="1" placeholder="60" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      <div><label for="time-minutes" class="block text-sm font-medium mb-1" style="color: #374151;">Time Required (minutes)</label> <input type="number" id="time-minutes" required min="1" placeholder="60" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
       </div>
-      <div><label for="hourly-rate" class="block text-sm font-medium mb-1" style="color: #374151;"><span id="hourly-rate-label">Your Hourly Rate</span> ($)</label> <input type="number" id="hourly-rate" required min="0" step="0.01" placeholder="50.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
+      <div><label for="hourly-rate" class="block text-sm font-medium mb-1" style="color: #374151;"><span id="hourly-rate-label">Your Hourly Rate</span> ($)</label> <input type="number" id="hourly-rate" required min="0" step="0.01" placeholder="50.00" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
       </div>
-      <div><label for="profit-margin" class="block text-sm font-medium mb-1" style="color: #374151;">Profit Margin (%)</label> <input type="number" id="profit-margin" required min="0" max="100" value="20" placeholder="20" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #fce7f3; background-color: #fdf2f8;">
-      </div><button type="submit" id="calculate-btn" class="w-full py-3 rounded-lg font-semibold text-white transition-colors" style="background-color: #ec4899;"> Calculate Service </button>
+      <div><label for="profit-margin" class="block text-sm font-medium mb-1" style="color: #374151;">Profit Margin (%)</label> <input type="number" id="profit-margin" required min="0" max="100" value="20" placeholder="20" class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+      </div><button type="submit" id="calculate-btn" class="w-full py-3 rounded-lg font-semibold text-white transition-colors" style="background: linear-gradient(135deg, #6A11CB, #00C4CC);"> Calculate Service </button>
      </form>
     </div><!-- Saved Services -->
     <div class="rounded-lg shadow-lg p-6" style="background-color: #ffffff;">
-     <h2 class="text-2xl font-semibold mb-4" style="color: #db2777;">Your Services</h2>
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">Your Services</h2>
      <div id="services-list" class="space-y-3">
       <p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>
      </div>
@@ -96,7 +110,7 @@ document.getElementById('calculator-form').addEventListener('submit', function (
   const container = document.getElementById('services-list');
 
   container.innerHTML = `
-    <div class="border-2 rounded-lg p-4" style="border-color: #fce7f3; background-color: #fdf2f8;">
+    <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
       <div class="flex justify-between items-start mb-3">
         <div class="flex-1">
           <h3 class="text-xl font-bold mb-1" style="color: #db2777;">${serviceName}</h3>

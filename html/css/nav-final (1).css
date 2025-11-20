@@ -61,11 +61,10 @@ body.product {
 
 /* Desktop link styles */
 .th-nav .th-menu a {
-  color: #2d2d38;
-  font-weight: 600;
-  font-size: 0.97em;
+  color: #000000;
+  font-weight: 430;
+  font-size: 1em;
   text-decoration: none;
-  text-transform: uppercase;
   position: relative;
 }
 
