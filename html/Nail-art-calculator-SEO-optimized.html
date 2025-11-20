@@ -104,7 +104,26 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
+<style>
+  @media (max-width: 480px) {
+    /* Reduce top padding on the main wrapper */
+    .calculator > div {
+      padding-top: 12px !important;
+    }
 
+    /* Tighten the header spacing */
+    #calculator-title {
+      margin-top: 0 !important;
+      margin-bottom: 8px !important;
+    }
+
+    /* Reduce gap under subtitle */
+    #calculator-title + p {
+      margin-top: 0 !important;
+      margin-bottom: 12px !important;
+    }
+  }
+</style>
 
   <!-- Original calculator content starts here -->
   <div class="min-h-full p-6" style="background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);">
