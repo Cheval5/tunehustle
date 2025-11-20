@@ -62,7 +62,7 @@ body.product {
 /* Desktop link styles */
 .th-nav .th-menu a {
   color: #000000;
-  font-weight: 450;
+  font-weight: 470;
   font-size: 1em;
   text-decoration: none;
   position: relative;
@@ -85,6 +85,10 @@ body.product {
 .th-nav .th-menu a:hover::after {
   transform:scaleX(1);
   transform-origin:left;
+}
+
+.th-nav .th-menu a:hover {
+  color: #411288; /* pick any colour you want */
 }
 
 /* ==================================================
