@@ -167,10 +167,65 @@
      <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;">Service Price</h2>
+
      <div id="services-list" class="space-y-3">
       <p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>
      </div>
     </div>
+
+    <!-- Share + Copy link buttons directly under the result card -->
+<!-- Soft Chip Buttons Below Result Card -->
+<div class="text-center mb-6 mt-4 flex justify-center gap-4">
+
+  <!-- Share Button -->
+  <button onclick="shareTool()"
+    style="background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+           color:white; 
+           padding:10px 20px; 
+           border-radius:8px; 
+           font-size:0.95em; 
+           font-weight:600; 
+           cursor:pointer;
+           display:flex;
+           align-items:center;
+           gap:8px;
+           box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+
+    <!-- Share Icon -->
+    <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a3.3 3.3 0 000-1.39l7.02-4.11A2.99 2.99 0 0018 7.91a3 3 0 10-2.83-2.01L7.94 9.99a3 3 0 100 4.02l7.23 4.14A3 3 0 1018 16.08z"></path>
+    </svg>
+
+    Share this tool
+  </button>
+
+  <!-- Copy Link Button -->
+ <button onclick="copyLink()"
+  style="background:#f3e7fc;
+         color:#7B2FF7;
+         padding:10px 20px; 
+         border-radius:8px; 
+         font-size:0.95em; 
+         font-weight:600; 
+         cursor:pointer;
+         display:flex;
+         align-items:center;
+         gap:8px;
+         box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+
+  <!-- Clean Copy Icon -->
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="#7B2FF7">
+    <path d="M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2zm0 16H8V7h11v14z"/>
+  </svg>
+
+  Copy link
+</button>
+
+
+</div>
+
+
+
     <section class="mt-6 max-w-3xl mx-auto text-gray-700 leading-relaxed">
       <p style="margin-bottom: 18px; color: #1e1e22;">
         <strong> Want access to the full Nail Bar Budget interactive sheet?</strong> It’s included with our 
@@ -280,8 +335,24 @@ document.querySelectorAll(".th-nav .th-menu a").forEach(link => {
     <span style="font-size:0.9em;">▲</span> Back to Calculator
   </a>
 </div>
+<script>
+function shareTool() {
+  if (navigator.share) {
+    navigator.share({
+      title: "Nail Service Pricing Calculator",
+      text: "Check out this tool to price your nail services:",
+      url: window.location.href
+    });
+  } else {
+    alert("Sharing isn't supported on this device, but you can copy the link instead.");
+  }
+}
 
-
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
+}
+</script>
 
 </body>
 </html>
