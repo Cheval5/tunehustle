@@ -1,4 +1,3 @@
-
 /* Remove unwanted spacing above nav caused by Tailwind min-h-full */
 html, body {
   margin: 0 !important;
@@ -25,7 +24,6 @@ html, body {
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   transition: all 0.35s ease;
   margin-top: 0 !important;
-
 }
 
 /* Logo */
@@ -36,9 +34,9 @@ html, body {
 }
 
 .th-nav .site-logo {
-  height: 67px;
+  height: 60px;
   width: auto;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  object-fit: contain;
 }
 
 .th-nav .site-logo:hover {
@@ -51,6 +49,9 @@ html, body {
   display: flex;
   align-items: center;
   gap: 42px;
+
+  flex-direction: row !important;
+  white-space: nowrap !important;
 }
 
 .th-nav .th-menu a {
@@ -107,14 +108,53 @@ html, body {
 }
 
 /* Mobile */
+
 @media(max-width:768px){
   .th-nav {
     padding:14px 22px;
   }
 
+  /* hide menu on mobile */
+  .th-nav .th-menu {
+    display:none !important;
+    flex-direction: column !important;
+    white-space: normal !important;
+  }
+
+  .th-nav .hamburger {
+    display:flex;
+  }
+
+  /* mobile dropdown */
+  .th-nav .th-menu.active {
+    display:flex !important;
+    flex-direction:column !important;
+    position:fixed !important;
+    top:70px !important;
+    right:20px !important;
+    width:220px;
+    background:white;
+    padding:18px 0;
+    border-radius:16px;
+    box-shadow:0 8px 26px rgba(123,47,247,0.12);
+    text-align:center;
+    animation:menuSlideDown 0.25s ease;
+    z-index:99999 !important;
+  }
+
+  @keyframes menuSlideDown {
+    from { opacity:0; transform:translateY(-10px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+}
+
+
   .th-nav .th-menu {
     display:none;
-  }
+  
+  flex-direction: row !important;
+  white-space: nowrap !important;
+}
 
   .th-nav .hamburger {
     display:flex;
@@ -142,9 +182,56 @@ html, body {
 }
 
 /* Responsive Logo */
-@media(max-width:1024px){ .th-nav .site-logo{ height:50px; } }
-@media(max-width:768px){ .th-nav .site-logo{ height:45px; } }
-@media(max-width:480px){ .th-nav .site-logo{ height:42px; } }
+@media(max-width:1024px){ .th-nav .site-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+} }
+
+@media(max-width:768px){
+  .th-nav {
+    padding:14px 22px;
+  }
+
+  /* hide menu on mobile */
+  .th-nav .th-menu {
+    display:none !important;
+    flex-direction: column !important;
+    white-space: normal !important;
+  }
+
+  .th-nav .hamburger {
+    display:flex;
+  }
+
+  /* mobile dropdown */
+  .th-nav .th-menu.active {
+    display:flex !important;
+    flex-direction:column !important;
+    position:fixed !important;
+    top:70px !important;
+    right:20px !important;
+    width:220px;
+    background:white;
+    padding:18px 0;
+    border-radius:16px;
+    box-shadow:0 8px 26px rgba(123,47,247,0.12);
+    text-align:center;
+    animation:menuSlideDown 0.25s ease;
+    z-index:99999 !important;
+  }
+
+  @keyframes menuSlideDown {
+    from { opacity:0; transform:translateY(-10px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+}
+ }
+@media(max-width:480px){ .th-nav .site-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+} }
 
 /* Fix mobile dropdown being blocked by Tailwind containers */
 .th-nav .th-menu.active {
