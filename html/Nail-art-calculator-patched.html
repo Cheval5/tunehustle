@@ -11,6 +11,7 @@
   <link rel="apple-touch-icon" href="assets/Favicon.svg">
 
   <link rel="stylesheet" href="css/nail-bar-calculator.css" />
+  <link rel="stylesheet" href="css/nav.css">
   <style>
     /* body {
       box-sizing: border-box;
@@ -27,24 +28,25 @@
  </head>
  <body class="min-h-full">
 
-  <!-- Navigation -->
-<nav>
-<div class="logo">
-  <a href="index.html">
-    <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
-  </a>
-</div>
-  <div class="menu" id="menu">
+<nav class="th-nav">
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
+    </a>
+  </div>
+
+  <div class="th-menu" id="th-menu">
     <a href="index.html">Home</a>
     <a href="New-product-1.html">Nail Bar Kit</a>
-    <a href="Nail-art-calculator.html">Side Hustle Calculators</a>
+    <a href="Nail-art-calculator-patched.html">Side Hustle Calculators</a>
   </div>
-  <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
+
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
   </div>
 </nav>
+
+
 
   <!-- Original calculator content starts here -->
   <div class="min-h-full p-6" style="background-color: #fdf2f8;">
@@ -293,21 +295,21 @@
     init();
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a12ac97111faacd',t:'MTc2MzU4NjQxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
- <script>
-  const hamburger = document.getElementById("hamburger");
-  const menu = document.getElementById("menu");
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("th-menu");
 
-  hamburger.addEventListener("click", () => {
-    menu.classList.toggle("active");
-  });
+hamburger.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
 
-  hamburger.addEventListener("keypress", e => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      menu.classList.toggle("active");
-    }
+// Close menu on link click
+document.querySelectorAll(".th-nav .th-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("active");
   });
+});
 </script>
- 
- </body>
+
+</body>
 </html>

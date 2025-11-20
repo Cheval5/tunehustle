@@ -12,6 +12,7 @@
   <link rel="apple-touch-icon" href="assets/Favicon.svg">
 
   <link rel="stylesheet" href="css/New-product-style-1.css" />
+  <link rel="stylesheet" href="css/nav.css">
   <script defer src="js/New-index-js.js"></script>
 
   <!-- Product Schema Markup -->
@@ -73,23 +74,24 @@
   <div class="gradient-blob blob4"></div>
 
 <!-- Navigation -->
-<nav>
-<div class="logo">
-  <a href="index.html">
-    <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
-  </a>
-</div>
-  <div class="menu" id="menu">
+<nav class="th-nav">
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
+    </a>
+  </div>
+
+  <div class="th-menu" id="th-menu">
     <a href="index.html">Home</a>
     <a href="New-product-1.html">Nail Bar Kit</a>
-    <a href="Nail-art-calculator.html">Side Hustle Calculators</a>
+    <a href="Nail-art-calculator-patched.html">Side Hustle Calculators</a>
   </div>
-  <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
+
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
   </div>
 </nav>
+
 
 
 
@@ -445,17 +447,21 @@ Enjoy the sneak peek — when you’re ready, grab the full Nail Bar Side Hustle
     <p>© 2025 Tune Hustle. All rights reserved.</p>
   </footer>
 
-  <!-- Mobile Menu -->
-  <script>
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.getElementById("menu");
-    hamburger.addEventListener("click", () => menu.classList.toggle("active"));
-    hamburger.addEventListener("keypress", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        menu.classList.toggle("active");
-      }
-    });
-  </script>
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("th-menu");
+
+hamburger.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+
+// Close menu on link click
+document.querySelectorAll(".th-nav .th-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("active");
+  });
+});
+</script>
+
 </body>
 </html>
