@@ -363,6 +363,10 @@
 
     // If selected option is a preset service, fill defaults
     if (presetData[key]) {
+
+          customServiceInput.classList.add("hidden");
+          customServiceInput.value = "";
+
       const p = presetData[key];
 
       document.getElementById('cost-supplies').value = p.supplies;
