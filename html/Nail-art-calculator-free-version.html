@@ -343,58 +343,69 @@
 
 // When user changes preset, fill the numbers
   presetServicesSelect.addEventListener('change', function () {
+    form.reset();
+    document.getElementById('profit-margin').value = 20;
     const key = this.value;
      isLoadingPreset = true; // stop auto-saving
 
-        // Custom name field
-      if (key === "custom") {
-        
-      customServiceInput.classList.remove("hidden");
-      customServiceInput.value = "";
+         if (key === "") {
+        isLoadingPreset = true;
 
-      // Reset preset fields
-      document.getElementById('cost-supplies').value = "";
-      document.getElementById('time-minutes').value = "";
-      document.getElementById('hourly-rate').value = "";
-      document.getElementById('profit-margin').value = 20;
-      calculateBtn.innerText = "Calculate Service";
-      calculateBtn.style.opacity = "1"; // default you use
+        customServiceInput.classList.add("hidden");
+        customServiceInput.value = "";
 
-      saveInputsToLocalStorage();
+        document.getElementById('cost-supplies').value = "";
+        document.getElementById('time-minutes').value = "";
+        document.getElementById('hourly-rate').value = "";
+        document.getElementById('profit-margin').value = 20;
 
-      isLoadingPreset = false;   // ⭐ REQUIRED LINE ⭐
+        calculateBtn.innerText = "Calculate Service";
+        calculateBtn.style.opacity = "1";
 
-      return;
+        localStorage.removeItem('nail_calc_inputs');
+
+        isLoadingPreset = false;
+        return;
     }
 
+if (key === "custom") {
+    customServiceInput.classList.remove("hidden");
+    return;
+} else {
+    customServiceInput.classList.add("hidden");
+}
 
     // If selected option is a preset service, fill defaults
     if (presetData[key]) {
+    const p = presetData[key];
 
-          customServiceInput.classList.add("hidden");
-          customServiceInput.value = "";
+    // Hide custom field fully
+    customServiceInput.classList.add("hidden");
+    customServiceInput.value = "";
 
-      const p = presetData[key];
+    // Reset ALL fields to preset defaults
+    document.getElementById('cost-supplies').value = p.supplies;
+    document.getElementById('time-minutes').value = p.minutes;
+    document.getElementById('hourly-rate').value = p.hourly;
+    document.getElementById('profit-margin').value = p.margin;
 
-      document.getElementById('cost-supplies').value = p.supplies;
-      document.getElementById('time-minutes').value = p.minutes;
-      document.getElementById('hourly-rate').value = p.hourly;
-      document.getElementById('profit-margin').value = p.margin;
-    }
+    // Reset calculate button state
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
 
-      // Save preset defaults ONLY
-      // Save preset defaults ONLY (and only when a valid preset is selected)
-if (presetData[key]) {
+    // Save preset defaults
     localStorage.setItem('nail_calc_inputs', JSON.stringify({
-        serviceName: presetData[key].name,
+        serviceName: p.name,
         presetKey: key,
-        costSupplies: presetData[key].supplies,
-        timeMinutes: presetData[key].minutes,
-        hourlyRate: presetData[key].hourly,
-        profitMargin: presetData[key].margin
+        costSupplies: p.supplies,
+        timeMinutes: p.minutes,
+        hourlyRate: p.hourly,
+        profitMargin: p.margin
     }));
+
+    isLoadingPreset = false;
+    return;
 }
-    isLoadingPreset = false; // re-enable auto-saving
 
   });
 
