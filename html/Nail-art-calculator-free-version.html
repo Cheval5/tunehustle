@@ -343,16 +343,23 @@
   presetServicesSelect.addEventListener('change', function () {
     const key = this.value;
 
-    // Custom name field
-    if (key === "custom") {
+        // Custom name field
+      if (key === "custom") {
       customServiceInput.classList.remove("hidden");
       customServiceInput.value = "";
-    } else {
-      customServiceInput.classList.add("hidden");
+
+      // Reset preset fields
+      document.getElementById('cost-supplies').value = "";
+      document.getElementById('time-minutes').value = "";
+      document.getElementById('hourly-rate').value = "";
+      document.getElementById('profit-margin').value = 20;
+      calculateBtn.innerText = "Calculate Service";
+      calculateBtn.style.opacity = "1"; // default you use
+
+      saveInputsToLocalStorage();
+      return;
     }
 
-    // If nothing selected → do nothing
-    if (!key) return;
 
     // If selected option is a preset service, fill defaults
     if (presetData[key]) {
@@ -460,6 +467,10 @@
           document.getElementById('profit-margin').value = p.margin;
         }
       }
+          // Reset button state on page load
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
+
     } catch (e) {
       console.warn('Unable to restore inputs', e);
     }
@@ -590,28 +601,30 @@
   }
 
   // Reset button (outside submit)
-  if (resetBtn) {
-    resetBtn.addEventListener("click", function () {
-      form.reset();
+ // Reset button (outside submit)
+if (resetBtn) {
+  resetBtn.addEventListener("click", function () {
+    form.reset();
 
-      // Default profit margin back to 20
-      document.getElementById("profit-margin").value = 20;
+    // Default profit margin back to 20
+    document.getElementById("profit-margin").value = 20;
 
-      // Hide custom service field
-      customServiceInput.classList.add("hidden");
-      customServiceInput.value = "";
+    // Hide and clear custom field
+    customServiceInput.classList.add("hidden");
+    customServiceInput.value = "";
 
-      // Clear local storage
-      localStorage.removeItem("nail_calc_inputs");
+    // Clear local storage
+    localStorage.removeItem("nail_calc_inputs");
 
-      // Reset result card text
-      servicesList.innerHTML = '<p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>';
+    // Reset result card text
+    servicesList.innerHTML = '<p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>';
 
-      // Reset button text/state
-      calculateBtn.innerText = "Calculate Service";
-      calculateBtn.style.opacity = "1";
-    });
-  }
+    // Reset button text/state
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
+  });
+}
+
     </script>
 
 
