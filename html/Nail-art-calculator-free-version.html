@@ -441,10 +441,12 @@ presetServicesSelect.addEventListener('change', function () {
 
     const saved = JSON.parse(raw);
 
-    // restore preset SELECT
-    if (saved.presetKey) {
+
+    // restore preset SELECT ONLY IF USER HAS NOT SELECTED ANYTHING
+    if (!presetServicesSelect.value && saved.presetKey) {
       presetServicesSelect.value = saved.presetKey;
     }
+
 
     // show custom input if needed
     const customInput = document.getElementById('custom-service-name');
@@ -455,10 +457,14 @@ presetServicesSelect.addEventListener('change', function () {
       customInput.classList.add("hidden");
     }
 
-    if (saved.costSupplies) document.getElementById('cost-supplies').value = saved.costSupplies;
-    if (saved.timeMinutes) document.getElementById('time-minutes').value = saved.timeMinutes;
-    if (saved.hourlyRate) document.getElementById('hourly-rate').value = saved.hourlyRate;
-    if (saved.profitMargin) document.getElementById('profit-margin').value = saved.profitMargin;
+    // Restore values ONLY for custom services, not presets
+    if (saved.presetKey === "custom") {
+        if (saved.costSupplies) document.getElementById('cost-supplies').value = saved.costSupplies;
+        if (saved.timeMinutes) document.getElementById('time-minutes').value = saved.timeMinutes;
+        if (saved.hourlyRate) document.getElementById('hourly-rate').value = saved.hourlyRate;
+        if (saved.profitMargin) document.getElementById('profit-margin').value = saved.profitMargin;
+    }
+
 
   } catch (e) {
     console.warn('Unable to restore inputs', e);
