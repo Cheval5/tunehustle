@@ -292,6 +292,8 @@
     <script>
     // Calculator logic, state & UI enhancements
 
+    let isLoadingPreset = false;
+
   const form = document.getElementById('calculator-form');
   const servicesList = document.getElementById('services-list');
   const calculateBtn = document.getElementById('calculate-btn');
@@ -342,9 +344,11 @@
 // When user changes preset, fill the numbers
   presetServicesSelect.addEventListener('change', function () {
     const key = this.value;
+     isLoadingPreset = true; // stop auto-saving
 
         // Custom name field
       if (key === "custom") {
+        
       customServiceInput.classList.remove("hidden");
       customServiceInput.value = "";
 
@@ -357,6 +361,9 @@
       calculateBtn.style.opacity = "1"; // default you use
 
       saveInputsToLocalStorage();
+
+      isLoadingPreset = false;   // ⭐ REQUIRED LINE ⭐
+
       return;
     }
 
@@ -375,8 +382,20 @@
       document.getElementById('profit-margin').value = p.margin;
     }
 
-    // Save fields automatically
-    saveInputsToLocalStorage();
+      // Save preset defaults ONLY
+      // Save preset defaults ONLY (and only when a valid preset is selected)
+if (presetData[key]) {
+    localStorage.setItem('nail_calc_inputs', JSON.stringify({
+        serviceName: presetData[key].name,
+        presetKey: key,
+        costSupplies: presetData[key].supplies,
+        timeMinutes: presetData[key].minutes,
+        hourlyRate: presetData[key].hourly,
+        profitMargin: presetData[key].margin
+    }));
+}
+    isLoadingPreset = false; // re-enable auto-saving
+
   });
 
   // --- Currency detection (same as before) ---
@@ -414,6 +433,7 @@
   }
 
   function saveInputsToLocalStorage() {
+    if (isLoadingPreset) return; // skip saving during preset loading
     let key = presetServicesSelect.value;
     let name = "";
 
