@@ -151,9 +151,25 @@
           -webkit-text-fill-color: transparent;">Add New Service</h2>
      <form id="calculator-form" class="space-y-4">
       <div><label for="service-name" class="block text-sm font-medium mb-1" style="color: #374151;">Service Name</label>
-        <select id="preset-services"
-        class="w-full px-4 py-3 border-2 rounded-lg mt-2 appearance-none"
-        style="border-color:#f3e7fc; background-color:#fbf2fd; font-size:1em; color:#374151; height:48px; line-height:48px;">
+          <select id="preset-services"
+            class="w-full px-4 py-3 border-2 rounded-lg mt-2"
+            style="
+            border-color:#f3e7fc;
+            background-color:#fbf2fd;
+            font-size:1em;
+            color:#374151;
+            padding-top:12px;
+            padding-bottom:12px;
+            line-height:1.2em;
+            appearance:none;
+            -webkit-appearance:none;
+            -moz-appearance:none;
+            background-image:url('data:image/svg+xml;utf8,<svg fill=\'%236b7280\' height=\'16\' width=\'16\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M5.25 7.5l4.75 4.75L14.75 7.5\'/></svg>');
+            background-repeat:no-repeat;
+            background-position:right 12px center;
+            background-size:16px;
+            ">
+
         <option value="">Choose a preset service…</option>
         <option value="short-acrylic">Short Acrylic Full Set</option>
         <option value="gel-overlay">Gel Overlay</option>
@@ -611,23 +627,6 @@ function getServiceIcon(name) {
     }
     </script>
 
-
-  <!-- Menu JS -->
-<script>
-const hamburger = document.getElementById("hamburger");
-const menu = document.getElementById("th-menu");
-
-hamburger.addEventListener("click", () => {
-  menu.classList.toggle("active");
-});
-
-// Close menu on link click
-document.querySelectorAll(".th-nav .th-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    menu.classList.remove("active");
-  });
-});
-</script>
 
 <section class="mt-10 max-w-3xl mx-auto text-gray-700">
   <h2 class="text-2xl font-semibold mb-3" style="background: linear-gradient(120deg, #411288, #00C4CC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2em; font-weight: 700; margin-bottom: 24px;">FAQs</h2>
