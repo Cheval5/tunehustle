@@ -343,8 +343,12 @@
 
 // When user changes preset, fill the numbers
   presetServicesSelect.addEventListener('change', function () {
-    form.reset();
-    document.getElementById('profit-margin').value = 20;
+// Clear only numeric fields — NOT the dropdown
+document.getElementById('cost-supplies').value = "";
+document.getElementById('time-minutes').value = "";
+document.getElementById('hourly-rate').value = "";
+document.getElementById('profit-margin').value = 20;
+
     const key = this.value;
      isLoadingPreset = true; // stop auto-saving
 
