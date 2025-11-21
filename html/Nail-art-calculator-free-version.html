@@ -582,20 +582,15 @@ function getServiceIcon(name) {
         window.lastServiceResult = data;
 
         // Update UI
-        if (servicesList) {
-          servicesList.innerHTML = renderServiceCard(data);
-        }
+      if (servicesList) {
+        servicesList.innerHTML = renderServiceCard(data);
+      }
 
-        saveInputsToLocalStorage();
+      // Save inputs
+      saveInputsToLocalStorage();
 
-
-        if (servicesList) {
-          servicesList.innerHTML = renderServiceCard(data);
-        }
-
-        saveInputsToLocalStorage();
-      });
-    }
+      calculateBtn.innerText = "Calculated";
+      calculateBtn.style.opacity = "0.8";
 
         // Reset button
         resetBtn.addEventListener("click", function () {
