@@ -292,202 +292,197 @@
     <script>
     // Calculator logic, state & UI enhancements
 
-    const form = document.getElementById('calculator-form');
-    const servicesList = document.getElementById('services-list');
-    const calculateBtn = document.getElementById('calculate-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    const favoriteBtn = document.getElementById('favorite-btn');
-    // --- Preset services for quick start ---
-const presetServicesSelect = document.getElementById('preset-services');
+  const form = document.getElementById('calculator-form');
+  const servicesList = document.getElementById('services-list');
+  const calculateBtn = document.getElementById('calculate-btn');
+  const resetBtn = document.getElementById('reset-btn');
+  const presetServicesSelect = document.getElementById('preset-services');
+  const customServiceInput = document.getElementById('custom-service-name');
 
-const presetData = {
-  "short-acrylic": {
-    name: "Short Acrylic Full Set",
-    supplies: 8,
-    minutes: 90,
-    hourly: 50,
-    margin: 25
-  },
-  "gel-overlay": {
-    name: "Gel Overlay",
-    supplies: 5,
-    minutes: 60,
-    hourly: 45,
-    margin: 20
-  },
-  "biab-refill": {
-    name: "BIAB Refill",
-    supplies: 6,
-    minutes: 75,
-    hourly: 50,
-    margin: 20
-  },
-  "classic-manicure": {
-    name: "Classic Manicure",
-    supplies: 3,
-    minutes: 40,
-    hourly: 40,
-    margin: 15
-  },
-  "pedicure": {
-    name: "Pedicure",
-    supplies: 6,
-    minutes: 60,
-    hourly: 45,
-    margin: 20
-  }
-};
-
-presetServicesSelect.addEventListener('change', function () {
-
-  const key = this.value;
-  const customInput = document.getElementById("custom-service-name");
-
-  // If user chooses "Add a new service"
-  if (key === "custom") {
-    customInput.classList.remove("hidden");
-    customInput.value = "";   // clear previous custom name
-    return;                    // stop here
-  }
-
-  // Hide custom input for all preset choices
-  customInput.classList.add("hidden");
-
-  // If nothing selected → do nothing
-  if (!key) return;
-
-  // If selected option is a preset service
-  if (presetData[key]) {
-    const p = presetData[key];
-
-    document.getElementById('cost-supplies').value = p.supplies;
-    document.getElementById('time-minutes').value = p.minutes;
-    document.getElementById('hourly-rate').value = p.hourly;
-    document.getElementById('profit-margin').value = p.margin;
-  }
-
-  // Save fields automatically
-  saveInputsToLocalStorage();
-});
-
-
-
-    // --- Currency detection ---
-    function detectCurrency() {
-      const locale = navigator.language || navigator.userLanguage || '';
-      const map = {
-        US: 'USD', CA: 'CAD', GB: 'GBP', AU: 'AUD', NZ: 'NZD', SG: 'SGD',
-        IE: 'EUR', DE: 'EUR', FR: 'EUR', NL: 'EUR', ES: 'EUR', IT: 'EUR',
-        PT: 'EUR', BE: 'EUR', AT: 'EUR', FI: 'EUR', GR: 'EUR', LU: 'EUR',
-        JP: 'JPY', CN: 'CNY', IN: 'INR', AE: 'AED', SA: 'SAR', ZA: 'ZAR',
-        CH: 'CHF'
-      };
-      const upper = locale.toUpperCase();
-      for (const key in map) {
-        if (upper.includes(key)) return map[key];
-      }
-      return 'USD';
+  // --- Preset services for quick start ---
+  const presetData = {
+    "short-acrylic": {
+      name: "Short Acrylic Full Set",
+      supplies: 8,
+      minutes: 90,
+      hourly: 50,
+      margin: 25
+    },
+    "gel-overlay": {
+      name: "Gel Overlay",
+      supplies: 5,
+      minutes: 60,
+      hourly: 45,
+      margin: 20
+    },
+    "biab-refill": {
+      name: "BIAB Refill",
+      supplies: 6,
+      minutes: 75,
+      hourly: 50,
+      margin: 20
+    },
+    "classic-manicure": {
+      name: "Classic Manicure",
+      supplies: 3,
+      minutes: 40,
+      hourly: 40,
+      margin: 15
+    },
+    "pedicure": {
+      name: "Pedicure",
+      supplies: 6,
+      minutes: 60,
+      hourly: 45,
+      margin: 20
     }
-
-    const USER_CURRENCY = detectCurrency();
-    const currencyFormatter = new Intl.NumberFormat(
-      navigator.language || 'en-US',
-      { style: 'currency', currency: USER_CURRENCY }
-    );
-
-    // last calculated / favourite result (used for share, copy, favourite)
-    let lastServiceResult = null;
-
-    // --- helpers ---
-
-    function getInputValue(id) {
-      const el = document.getElementById(id);
-      if (!el) return '';
-      return el.value;
-    }
-
-    function saveInputsToLocalStorage() {
-  // determine service name to save
-  let key = presetServicesSelect.value;
-  let name = "";
-
-  if (presetData[key]) {
-    name = presetData[key].name;
-  } else if (key === "custom") {
-    name = document.getElementById("custom-service-name").value.trim() || "Custom Service";
-  }
-
-  const payload = {
-    serviceName: name,
-    presetKey: key,
-    costSupplies: getInputValue('cost-supplies'),
-    timeMinutes: getInputValue('time-minutes'),
-    hourlyRate: getInputValue('hourly-rate'),
-    profitMargin: getInputValue('profit-margin')
   };
 
-  try {
-    localStorage.setItem('nail_calc_inputs', JSON.stringify(payload));
-  } catch (e) {
-    console.warn('Unable to save inputs', e);
-  }
-}
 
+// When user changes preset, fill the numbers
+  presetServicesSelect.addEventListener('change', function () {
+    const key = this.value;
 
-    function restoreInputsFromLocalStorage() {
-  try {
-    const raw = localStorage.getItem('nail_calc_inputs');
-    if (!raw) return;
-
-    const saved = JSON.parse(raw);
-
-
-    // restore preset SELECT ONLY IF USER HAS NOT SELECTED ANYTHING
-    if (!presetServicesSelect.value && saved.presetKey) {
-      presetServicesSelect.value = saved.presetKey;
-    }
-
-
-    // show custom input if needed
-    const customInput = document.getElementById('custom-service-name');
-    if (saved.presetKey === "custom") {
-      customInput.classList.remove("hidden");
-      customInput.value = saved.serviceName || "";
+    // Custom name field
+    if (key === "custom") {
+      customServiceInput.classList.remove("hidden");
+      customServiceInput.value = "";
     } else {
-      customInput.classList.add("hidden");
+      customServiceInput.classList.add("hidden");
     }
 
-    // Restore values ONLY for custom services, not presets
-    if (saved.presetKey === "custom") {
+    // If nothing selected → do nothing
+    if (!key) return;
+
+    // If selected option is a preset service, fill defaults
+    if (presetData[key]) {
+      const p = presetData[key];
+
+      document.getElementById('cost-supplies').value = p.supplies;
+      document.getElementById('time-minutes').value = p.minutes;
+      document.getElementById('hourly-rate').value = p.hourly;
+      document.getElementById('profit-margin').value = p.margin;
+    }
+
+    // Save fields automatically
+    saveInputsToLocalStorage();
+  });
+
+  // --- Currency detection (same as before) ---
+  function detectCurrency() {
+    const locale = navigator.language || navigator.userLanguage || '';
+    const map = {
+      US: 'USD', CA: 'CAD', GB: 'GBP', AU: 'AUD', NZ: 'NZD', SG: 'SGD',
+      IE: 'EUR', DE: 'EUR', FR: 'EUR', NL: 'EUR', ES: 'EUR', IT: 'EUR',
+      PT: 'EUR', BE: 'EUR', AT: 'EUR', FI: 'EUR', GR: 'EUR', LU: 'EUR',
+      JP: 'JPY', CN: 'CNY', IN: 'INR', AE: 'AED', SA: 'SAR', ZA: 'ZAR',
+      CH: 'CHF'
+    };
+    const upper = locale.toUpperCase();
+    for (const key in map) {
+      if (upper.includes(key)) return map[key];
+    }
+    return 'USD';
+  }
+
+  const USER_CURRENCY = detectCurrency();
+  const currencyFormatter = new Intl.NumberFormat(
+    navigator.language || 'en-US',
+    { style: 'currency', currency: USER_CURRENCY }
+  );
+
+  // last calculated / favourite result (used for share, copy, favourite)
+  window.lastServiceResult = null;
+
+  // --- helpers ---
+
+  function getInputValue(id) {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    return el.value;
+  }
+
+  function saveInputsToLocalStorage() {
+    let key = presetServicesSelect.value;
+    let name = "";
+
+    if (presetData[key]) {
+      name = presetData[key].name;
+    } else if (key === "custom") {
+      name = customServiceInput.value.trim() || "Custom Service";
+    }
+
+    const payload = {
+      serviceName: name,
+      presetKey: key,
+      costSupplies: getInputValue('cost-supplies'),
+      timeMinutes: getInputValue('time-minutes'),
+      hourlyRate: getInputValue('hourly-rate'),
+      profitMargin: getInputValue('profit-margin')
+    };
+
+    try {
+      localStorage.setItem('nail_calc_inputs', JSON.stringify(payload));
+    } catch (e) {
+      console.warn('Unable to save inputs', e);
+    }
+  }
+
+  // On page load, restore last used values
+  function restoreInputsFromLocalStorage() {
+    try {
+      const raw = localStorage.getItem('nail_calc_inputs');
+      if (!raw) return;
+
+      const saved = JSON.parse(raw);
+
+      if (saved.presetKey) {
+        presetServicesSelect.value = saved.presetKey;
+      }
+
+      // If last time was custom → restore custom fields
+      if (saved.presetKey === "custom") {
+        customServiceInput.classList.remove("hidden");
+        customServiceInput.value = saved.serviceName || "";
+
         if (saved.costSupplies) document.getElementById('cost-supplies').value = saved.costSupplies;
         if (saved.timeMinutes) document.getElementById('time-minutes').value = saved.timeMinutes;
         if (saved.hourlyRate) document.getElementById('hourly-rate').value = saved.hourlyRate;
         if (saved.profitMargin) document.getElementById('profit-margin').value = saved.profitMargin;
+      } else {
+        // If last time used a preset → show the preset's default numbers
+        customServiceInput.classList.add("hidden");
+        if (presetData[saved.presetKey]) {
+          const p = presetData[saved.presetKey];
+          document.getElementById('cost-supplies').value = p.supplies;
+          document.getElementById('time-minutes').value = p.minutes;
+          document.getElementById('hourly-rate').value = p.hourly;
+          document.getElementById('profit-margin').value = p.margin;
+        }
+      }
+    } catch (e) {
+      console.warn('Unable to restore inputs', e);
     }
-
-
-  } catch (e) {
-    console.warn('Unable to restore inputs', e);
   }
-}
-function getServiceIcon(name) {
-  const n = name.toLowerCase();
 
-  if (n.includes("acrylic")) return "💅";
-  if (n.includes("gel")) return "🌈";
-  if (n.includes("biab")) return "💎";
-  if (n.includes("mani")) return "✨";
-  if (n.includes("pedi")) return "🦶";
+  function getServiceIcon(name) {
+    const n = name.toLowerCase();
 
-  return "🌟"; // fallback for custom or unknown
-}
+    if (n.includes("acrylic")) return "💅";
+    if (n.includes("gel")) return "🌈";
+    if (n.includes("biab")) return "💎";
+    if (n.includes("mani")) return "✨";
+    if (n.includes("pedi")) return "🦶";
 
-    function renderServiceCard(data) {
-      const suppliesPct = data.totalCost > 0 ? (data.costSupplies / data.totalCost) * 100 : 0;
-      const laborPct = data.totalCost > 0 ? (data.laborCost / data.totalCost) * 100 : 0;
-      const profitPct = data.suggestedPrice > 0 ? (data.profit / data.suggestedPrice) * 100 : 0;
+    return "🌟"; // fallback for custom or unknown
+  }
 
-      return `
+  function renderServiceCard(data) {
+    const suppliesPct = data.totalCost > 0 ? (data.costSupplies / data.totalCost) * 100 : 0;
+    const laborPct = data.totalCost > 0 ? (data.laborCost / data.totalCost) * 100 : 0;
+    const profitPct = data.suggestedPrice > 0 ? (data.profit / data.suggestedPrice) * 100 : 0;
+
+    return `
       <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
         <div class="flex justify-between items-start mb-3">
           <div class="flex-1">
@@ -526,68 +521,61 @@ function getServiceIcon(name) {
           <div>📈 Margin: ${data.profitMargin}%</div>
         </div>
       </div>
-      `;
-    }
+    `;
+  }
 
-    // Attach input listeners for saving
-    ['cost-supplies','time-minutes','hourly-rate','profit-margin','custom-service-name','preset-services'].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener('input', saveInputsToLocalStorage);
-    });
+  // Attach input listeners for saving
+  ['cost-supplies','time-minutes','hourly-rate','profit-margin','custom-service-name','preset-services'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', saveInputsToLocalStorage);
+  });
 
-    // Restore inputs on load
-    restoreInputsFromLocalStorage();
+  // Restore inputs on load
+  restoreInputsFromLocalStorage();
 
-    // Submit handler
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
+  // Submit handler
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
       let serviceKey = presetServicesSelect.value;
       let serviceName = "";
 
-      // If preset → use preset name
       if (presetData[serviceKey]) {
         serviceName = presetData[serviceKey].name;
-      }
-
-      // If custom → read typed field
-      else if (serviceKey === "custom") {
-        serviceName = document.getElementById("custom-service-name").value.trim() || "Custom Service";
-      }
-
-      // If no selection
-      else {
+      } else if (serviceKey === "custom") {
+        serviceName = customServiceInput.value.trim() || "Custom Service";
+      } else {
         serviceName = "Custom Service";
       }
 
-        const costSupplies = parseFloat(getInputValue('cost-supplies')) || 0;
-        const timeMinutes = parseFloat(getInputValue('time-minutes')) || 0;
-        const hourlyRate = parseFloat(getInputValue('hourly-rate')) || 0;
-        const profitMargin = parseFloat(getInputValue('profit-margin')) || 0;
+      const costSupplies = parseFloat(getInputValue('cost-supplies')) || 0;
+      const timeMinutes = parseFloat(getInputValue('time-minutes')) || 0;
+      const hourlyRate = parseFloat(getInputValue('hourly-rate')) || 0;
+      const profitMargin = parseFloat(getInputValue('profit-margin')) || 0;
 
-        const laborCost = (hourlyRate / 60) * timeMinutes;
-        const totalCost = costSupplies + laborCost;
-        const profit = totalCost * (profitMargin / 100);
-        const suggestedPrice = totalCost + profit;
+      const laborCost = (hourlyRate / 60) * timeMinutes;
+      const totalCost = costSupplies + laborCost;
+      const profit = totalCost * (profitMargin / 100);
+      const suggestedPrice = totalCost + profit;
 
-        const data = {
-          serviceName,
-          costSupplies,
-          timeMinutes,
-          hourlyRate,
-          profitMargin,
-          laborCost,
-          totalCost,
-          profit,
-          suggestedPrice
-        };
+      const data = {
+        serviceName,
+        costSupplies,
+        timeMinutes,
+        hourlyRate,
+        profitMargin,
+        laborCost,
+        totalCost,
+        profit,
+        suggestedPrice
+      };
 
-        // ⭐ Make it global explicitly
-        window.lastServiceResult = data;
+      // Make it global for "copy result"
+      window.lastServiceResult = data;
 
-        // Update UI
+      // Update UI
       if (servicesList) {
         servicesList.innerHTML = renderServiceCard(data);
       }
@@ -595,27 +583,35 @@ function getServiceIcon(name) {
       // Save inputs
       saveInputsToLocalStorage();
 
+      // Change button state
       calculateBtn.innerText = "Calculated";
       calculateBtn.style.opacity = "0.8";
+    });
+  }
 
-        // Reset button
-        resetBtn.addEventListener("click", function () {
+  // Reset button (outside submit)
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
       form.reset();
 
-      // Force reset profit margin
+      // Default profit margin back to 20
       document.getElementById("profit-margin").value = 20;
 
-      // Hide custom service input on reset
-      document.getElementById("custom-service-name").classList.add("hidden");
-      document.getElementById("custom-service-name").value = "";
+      // Hide custom service field
+      customServiceInput.classList.add("hidden");
+      customServiceInput.value = "";
 
-      // Clear saved local storage
+      // Clear local storage
       localStorage.removeItem("nail_calc_inputs");
 
-      // Clear result card
-      servicesList.innerHTML = "";
-    });
+      // Reset result card text
+      servicesList.innerHTML = '<p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>';
 
+      // Reset button text/state
+      calculateBtn.innerText = "Calculate Service";
+      calculateBtn.style.opacity = "1";
+    });
+  }
     </script>
 
 
