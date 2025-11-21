@@ -597,34 +597,24 @@ function getServiceIcon(name) {
       });
     }
 
-    // Reset button
-    if (resetBtn && form && servicesList) {
-      resetBtn.addEventListener('click', function () {
-        form.reset();
-        lastServiceResult = null;
-        try {
-          localStorage.removeItem('nail_calc_inputs');
-        } catch (e) {}
-        servicesList.innerHTML = '<p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>';
-      });
-    }
+        // Reset button
+        resetBtn.addEventListener("click", function () {
+      form.reset();
 
-    // Menu JS (keeps your hamburger working)
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.getElementById("th-menu");
+      // Force reset profit margin
+      document.getElementById("profit-margin").value = 20;
 
-    if (hamburger && menu) {
-      hamburger.addEventListener("click", () => {
-        menu.classList.toggle("active");
-      });
+      // Hide custom service input on reset
+      document.getElementById("custom-service-name").classList.add("hidden");
+      document.getElementById("custom-service-name").value = "";
 
-      // Close menu on link click
-      document.querySelectorAll(".th-nav .th-menu a").forEach(link => {
-        link.addEventListener("click", () => {
-          menu.classList.remove("active");
-        });
-      });
-    }
+      // Clear saved local storage
+      localStorage.removeItem("nail_calc_inputs");
+
+      // Clear result card
+      servicesList.innerHTML = "";
+    });
+
     </script>
 
 
