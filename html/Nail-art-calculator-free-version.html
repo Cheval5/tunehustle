@@ -683,9 +683,10 @@ function captureScreenshot() {
     }
 
     const d = window.lastServiceResult;
+    const icon = getServiceIcon(d.serviceName);
 
     const text =
-  `💅 ${d.serviceName}
+  `${icon} ${d.serviceName}
   💵 Suggested Price: ${currencyFormatter.format(d.suggestedPrice)}
   💗 Profit: ${currencyFormatter.format(d.profit)}
   🧮 Total Cost: ${currencyFormatter.format(d.totalCost)}
