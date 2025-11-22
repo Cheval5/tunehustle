@@ -190,23 +190,18 @@
 
 <!-- COST OF SUPPLIES -->
 <div>
- <div class="flex items-center gap-1 mb-2">
+  <div class="flex items-center justify-between mb-2">
     <label for="cost-supplies" class="text-sm font-medium" style="color:#374151;">
       Cost of Supplies ($)
     </label>
 
-<button type="button"
-  onclick="toggleHelper('help-supplies')"
-  class="ml-2 w-5 h-5 flex items-center justify-center rounded-full
-         bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
-         hover:bg-[#e9d7ff] shadow-sm">
-  ?
-</button>
-
-
-
-
-
+    <button type="button"
+      onclick="toggleHelper('help-supplies')"
+      class="w-6 h-6 flex items-center justify-center rounded-full
+             bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
+             hover:bg-[#e9d7ff] shadow-sm">
+      ?
+    </button>
   </div>
 
   <input
@@ -223,66 +218,139 @@
   <p id="help-supplies" class="helper-text text-xs text-gray-500 mt-1">
     Add how much product you use — acrylic, gel, tips, forms, wipes, polish, etc.
   </p>
-</div>  <!-- CLOSES THE SUPPLIES BLOCK PROPERLY -->
+</div>
+
+
+<!-- OVERHEAD COST -->
+<div>
+  <div class="flex items-center justify-between mb-2">
+    <label for="overhead-cost" class="text-sm font-medium" style="color:#374151;">
+      Overhead Cost ($)
+    </label>
+
+    <button type="button"
+      onclick="toggleHelper('help-overhead')"
+      class="w-6 h-6 flex items-center justify-center rounded-full
+             bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
+             hover:bg-[#e9d7ff] shadow-sm">
+      ?
+    </button>
+  </div>
+
+  <input
+    type="number"
+    id="overhead-cost"
+    required
+    min="0"
+    step="0.01"
+    placeholder="0.00"
+    class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+    style="border-color:#f3e7fc; background-color:#fbf2fd;"
+  >
+
+  <p id="help-overhead" class="helper-text text-xs text-gray-500 mt-1">
+    Add your estimated overhead cost per service — rent, utilities, files, tools, towels,
+    disinfectants, training, software, and other business expenses.
+  </p>
+</div>
+
+
 
 <!-- TIME REQUIRED -->
 <div>
-  <label for="time-minutes" class="block text-sm font-medium mb-1" style="color: #374151;">
+  <div class="flex items-center justify-between mb-2">
+    <label for="time-minutes" class="text-sm font-medium" style="color:#374151;">
+      Time Required (minutes)
+    </label>
 
-            Time Required (minutes)
-          </label>
-          <input
-            type="number"
-            id="time-minutes"
-            required
-            min="1"
-            placeholder="60"
-            class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
-            style="border-color: #f3e7fc; background-color: #fbf2fd;"
-          >
-          <p class="text-xs text-gray-500 mt-1">
-            Enter how long this service takes from start to finish, including prep and clean-up.
-          </p>
-        </div>
+    <button type="button"
+      onclick="toggleHelper('help-time')"
+      class="w-6 h-6 flex items-center justify-center rounded-full
+             bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
+             hover:bg-[#e9d7ff] shadow-sm">
+      ?
+    </button>
+  </div>
 
-        <div>
-          <label for="hourly-rate" class="block text-sm font-medium mb-1" style="color: #374151;">
-            <span id="hourly-rate-label">Your Hourly Rate</span> ($)
-          </label>
-          <input
-            type="number"
-            id="hourly-rate"
-            required
-            min="0"
-            step="0.01"
-            placeholder="50.00"
-            class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
-            style="border-color: #f3e7fc; background-color: #fbf2fd;"
-          >
-          <p class="text-xs text-gray-500 mt-1">
-            How much you want to earn per hour. If you’re not sure, many nail artists start with $30–$50.
-          </p>
-        </div>
+  <input
+    type="number"
+    id="time-minutes"
+    required
+    min="1"
+    placeholder="60"
+    class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+    style="border-color:#f3e7fc; background-color:#fbf2fd;"
+  >
 
-    <div>
-      <label for="profit-margin" class="block text-sm font-medium mb-1" style="color: #374151;">
-        Profit Margin (%)
-      </label>
-      <input
-        type="number"
-        id="profit-margin"
-        required
-        min="0"
-        max="100"
-        value="20"
-        placeholder="20"
-        class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
-        style="border-color: #f3e7fc; background-color: #fbf2fd;"
-      >
-      <p class="text-xs text-gray-500 mt-1">
-        Extra earnings added on top so you’re not just breaking even. Most artists use 15–30%.
-      </p>
-    </div>
+  <p id="help-time" class="helper-text text-xs text-gray-500 mt-1">
+    Enter how long this service takes from start to finish, including prep and clean-up.
+  </p>
+</div>
+
+<div>
+  <div class="flex items-center justify-between mb-2">
+    <label for="hourly-rate" class="text-sm font-medium" style="color:#374151;">
+      Your Hourly Rate ($)
+    </label>
+
+    <button type="button"
+      onclick="toggleHelper('help-hourly')"
+      class="w-6 h-6 flex items-center justify-center rounded-full
+             bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
+             hover:bg-[#e9d7ff] shadow-sm">
+      ?
+    </button>
+  </div>
+
+  <input
+    type="number"
+    id="hourly-rate"
+    required
+    min="0"
+    step="0.01"
+    placeholder="50.00"
+    class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+    style="border-color:#f3e7fc; background-color:#fbf2fd;"
+  >
+
+  <p id="help-hourly" class="helper-text text-xs text-gray-500 mt-1">
+    How much you want to earn per hour. Many nail artists start with $30–$50.
+  </p>
+</div>
+
+<!-- PROFIT MARGIN -->
+ <div>
+  <div class="flex items-center justify-between mb-2">
+    <label for="profit-margin" class="text-sm font-medium" style="color:#374151;">
+      Profit Margin (%)
+    </label>
+
+    <button type="button"
+      onclick="toggleHelper('help-margin')"
+      class="w-6 h-6 flex items-center justify-center rounded-full
+             bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
+             hover:bg-[#e9d7ff] shadow-sm">
+      ?
+    </button>
+  </div>
+
+  <input
+    type="number"
+    id="profit-margin"
+    required
+    min="0"
+    max="100"
+    value="20"
+    placeholder="20"
+    class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+    style="border-color:#f3e7fc; background-color:#fbf2fd;"
+  >
+
+  <p id="help-margin" class="helper-text text-xs text-gray-500 mt-1">
+    Extra earnings added so you're not just breaking even. Most artists use 15–30%.
+  </p>
+</div>
+
 
 
       <div class="mt-4">
@@ -475,6 +543,7 @@ if (key === "custom") {
 
     // Reset ALL fields to preset defaults
     document.getElementById('cost-supplies').value = p.supplies;
+    document.getElementById('overhead-cost').value = "";
     document.getElementById('time-minutes').value = p.minutes;
     document.getElementById('hourly-rate').value = p.hourly;
     document.getElementById('profit-margin').value = p.margin;
@@ -548,6 +617,7 @@ if (key === "custom") {
       serviceName: name,
       presetKey: key,
       costSupplies: getInputValue('cost-supplies'),
+      overheadCost: getInputValue('overhead-cost'),
       timeMinutes: getInputValue('time-minutes'),
       hourlyRate: getInputValue('hourly-rate'),
       profitMargin: getInputValue('profit-margin')
@@ -578,6 +648,7 @@ if (key === "custom") {
         customServiceInput.value = saved.serviceName || "";
 
         if (saved.costSupplies) document.getElementById('cost-supplies').value = saved.costSupplies;
+        if (saved.overheadCost) document.getElementById('overhead-cost').value = saved.overheadCost;
         if (saved.timeMinutes) document.getElementById('time-minutes').value = saved.timeMinutes;
         if (saved.hourlyRate) document.getElementById('hourly-rate').value = saved.hourlyRate;
         if (saved.profitMargin) document.getElementById('profit-margin').value = saved.profitMargin;
@@ -652,6 +723,7 @@ if (key === "custom") {
 
         <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
           <div>💰 Supplies: ${currencyFormatter.format(data.costSupplies)}</div>
+          <div>🏠 Overhead: ${currencyFormatter.format(data.overheadCost)}</div>
           <div>⏱️ Time: ${data.timeMinutes} min</div>
           <div>💵 Hourly Rate: ${currencyFormatter.format(data.hourlyRate)}</div>
           <div>📈 Margin: ${data.profitMargin}%</div>
@@ -661,7 +733,8 @@ if (key === "custom") {
   }
 
   // Attach input listeners for saving
-  ['cost-supplies','time-minutes','hourly-rate','profit-margin','custom-service-name','preset-services'].forEach(id => {
+['cost-supplies','overhead-cost','time-minutes','hourly-rate','profit-margin','custom-service-name','preset-services'].forEach(id => {
+
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', saveInputsToLocalStorage);
@@ -691,10 +764,13 @@ if (key === "custom") {
       const hourlyRate = parseFloat(getInputValue('hourly-rate')) || 0;
       const profitMargin = parseFloat(getInputValue('profit-margin')) || 0;
 
-      const laborCost = (hourlyRate / 60) * timeMinutes;
-      const totalCost = costSupplies + laborCost;
-      const profit = totalCost * (profitMargin / 100);
-      const suggestedPrice = totalCost + profit;
+const overheadCost = parseFloat(getInputValue('overhead-cost')) || 0;
+
+const laborCost = (hourlyRate / 60) * timeMinutes;
+const totalCost = costSupplies + laborCost + overheadCost;
+const profit = totalCost * (profitMargin / 100);
+const suggestedPrice = totalCost + profit;
+
 
       const data = {
         serviceName,
@@ -702,6 +778,7 @@ if (key === "custom") {
         timeMinutes,
         hourlyRate,
         profitMargin,
+        overheadCost,
         laborCost,
         totalCost,
         profit,
