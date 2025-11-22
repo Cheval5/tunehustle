@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nail Service Pricing Calculator | Nail Artist Profit Tool</title>
+<meta name="description" content="Use this free Nail Artist Business Calculator to price nail services, calculate profit margins, and set accurate rates for your salon or side hustle.">
+
+<style>
+  .helper-text {
+    display: none;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Nail Artist Business Calculator",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "A calculator for nail artists to price services, calculate profit, and estimate hourly earnings."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate the right price for acrylic or gel nail services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To price acrylic or gel services correctly, add your supply cost, your labour cost based on time, and a profit margin. A nail pricing calculator makes this easier by doing the math for you so you can set a fair, profitable rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What factors should I include when setting my hourly rate as a nail technician?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your hourly rate should reflect your experience level, overhead expenses, local market rates, and the level of detail the service requires. Many nail artists use an income calculator to find a rate that keeps their business profitable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can a nail salon profit calculator help me understand my earnings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A profit calculator shows your true income by comparing your service price to supply costs and time spent. It helps you identify your most profitable services and adjust pricing for sustainable growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What’s the best way to estimate supply costs for different nail services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "List each product used and divide the cost by the number of uses you get from it. A nail service pricing calculator can automate this and keep your supply cost estimates consistent and accurate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if my nail service prices are profitable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your service is profitable when your final price covers supply costs, labour time, and a healthy profit margin. A nail artist business calculator helps you check earnings per service so you can adjust pricing with confidence."
+      }
+    }
+  ]
+}
+</script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="assets/Favicon.svg" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/Favicon.svg">
+  <link rel="stylesheet" href="css/nav-final (1).css" />
+  <style>
+    /* body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;   
+    } */
+    /* html {
+      height: 100%;
+    } */
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="min-h-full calculator">
+
+<!-- Navigation -->
+<!-- Navigation -->
+<nav class="th-nav">
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logo-2N.svg" class="site-logo" alt="Tune Hustle Logo">
+    </a>
+  </div>
+
+  <div class="th-menu" id="th-menu">
+    <a href="index.html">Home</a>
+    <a href="New-product-1.html">Nail Bar Kit</a>
+    <a href="1-New-Nail-Art-Calculator.html">Side Hustle Calculators</a>
+  </div>
+
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<style>
+  @media (max-width: 480px) {
+    /* Reduce top padding on the main wrapper */
+    .calculator > div {
+      padding-top: 12px !important;
+    }
+
+    /* Tighten the header spacing */
+    #calculator-title {
+      margin-top: 0 !important;
+      margin-bottom: 8px !important;
+    }
+
+    /* Reduce gap under subtitle */
+    #calculator-title + p {
+      margin-top: 0 !important;
+      margin-bottom: 12px !important;
+    }
+  }
+</style>
+
+  <!-- Original calculator content starts here -->
+  <div class="min-h-full p-6" style="background: linear-gradient(180deg, #f5f0f0 0%, #faf7ff 45%, #f5fcff 100%);">
+   <div class="max-w-4xl mx-auto"><!-- Header -->
+    <div class="text-center mb-8">
+     <h1 id="calculator-title" class="text-4xl font-bold mb-2" style="font-size: 2.2em;
+          font-weight: 700;
+          background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 16px;
+          letter-spacing: 0.5px;">Nail Artist Business Calculator</h1>
+      <p style="font-size:1em;
+                color:#1e1e22;
+                line-height:1.7;
+                margin:0 auto;
+                max-width:720px;
+                font-weight:500;">
+        Calculate pricing for your nail services
+      </p>
+    </div><!-- Calculator Form -->
+    <div class="rounded-lg shadow-lg p-6 mb-6" style="background-color: #ffffff;">
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">Add New Service</h2>
+     <form id="calculator-form" class="space-y-4">
+      <!-- SERVICE NAME -->
+<div>
+  <label for="service-name" class="block text-sm font-medium mb-1" style="color: #374151;">
+    Service Name
+  </label>
+
+  <select id="preset-services"
+    class="w-full px-4 py-3 border-2 rounded-lg mt-2"
+    style="border-color:#f3e7fc; background-color:#fbf2fd;">
+    <option value="">Choose a preset service…</option>
+    <option value="short-acrylic">Short Acrylic Full Set</option>
+    <option value="gel-overlay">Gel Overlay</option>
+    <option value="biab-refill">BIAB Refill</option>
+    <option value="classic-manicure">Classic Manicure</option>
+    <option value="pedicure">Pedicure</option>
+    <option value="custom">Add a new service</option>
+  </select>
+
+  <input
+    type="text"
+    id="custom-service-name"
+    placeholder="Enter your custom service name"
+    class="w-full px-4 py-2 border-2 rounded-lg hidden"
+    style="border-color:#f3e7fc; background-color:#fbf2fd; margin-top:8px;"
+  >
+
+  <p style="font-size:0.8em; color:#6b7280; margin-top:4px;">
+    These are starter presets ℹ️ You can adjust anything to match your pricing.
+  </p>
+</div>
+
+
+<!-- COST OF SUPPLIES -->
+<div>
+ <div class="flex items-center gap-1 mb-2">
+    <label for="cost-supplies" class="text-sm font-medium" style="color:#374151;">
+      Cost of Supplies ($)
+    </label>
+
+<button type="button"
+  onclick="toggleHelper('help-supplies')"
+  class="ml-2 w-5 h-5 flex items-center justify-center rounded-full
+         bg-[#f3e7fc] text-[#7B2FF7] font-bold text-sm cursor-pointer
+         hover:bg-[#e9d7ff] shadow-sm">
+  ?
+</button>
+
+
+
+
+
+  </div>
+
+  <input
+    type="number"
+    id="cost-supplies"
+    required
+    min="0"
+    step="0.01"
+    placeholder="10.00"
+    class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+    style="border-color:#f3e7fc; background-color:#fbf2fd;"
+  >
+
+  <p id="help-supplies" class="helper-text text-xs text-gray-500 mt-1">
+    Add how much product you use — acrylic, gel, tips, forms, wipes, polish, etc.
+  </p>
+</div>  <!-- CLOSES THE SUPPLIES BLOCK PROPERLY -->
+
+<!-- TIME REQUIRED -->
+<div>
+  <label for="time-minutes" class="block text-sm font-medium mb-1" style="color: #374151;">
+
+            Time Required (minutes)
+          </label>
+          <input
+            type="number"
+            id="time-minutes"
+            required
+            min="1"
+            placeholder="60"
+            class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+            style="border-color: #f3e7fc; background-color: #fbf2fd;"
+          >
+          <p class="text-xs text-gray-500 mt-1">
+            Enter how long this service takes from start to finish, including prep and clean-up.
+          </p>
+        </div>
+
+        <div>
+          <label for="hourly-rate" class="block text-sm font-medium mb-1" style="color: #374151;">
+            <span id="hourly-rate-label">Your Hourly Rate</span> ($)
+          </label>
+          <input
+            type="number"
+            id="hourly-rate"
+            required
+            min="0"
+            step="0.01"
+            placeholder="50.00"
+            class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+            style="border-color: #f3e7fc; background-color: #fbf2fd;"
+          >
+          <p class="text-xs text-gray-500 mt-1">
+            How much you want to earn per hour. If you’re not sure, many nail artists start with $30–$50.
+          </p>
+        </div>
+
+    <div>
+      <label for="profit-margin" class="block text-sm font-medium mb-1" style="color: #374151;">
+        Profit Margin (%)
+      </label>
+      <input
+        type="number"
+        id="profit-margin"
+        required
+        min="0"
+        max="100"
+        value="20"
+        placeholder="20"
+        class="w-full px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2"
+        style="border-color: #f3e7fc; background-color: #fbf2fd;"
+      >
+      <p class="text-xs text-gray-500 mt-1">
+        Extra earnings added on top so you’re not just breaking even. Most artists use 15–30%.
+      </p>
+    </div>
+
+
+      <div class="mt-4">
+        <button type="submit" id="calculate-btn" class="w-full py-3 rounded-lg font-semibold text-white transition-colors" style="background: linear-gradient(135deg, #6A11CB, #00C4CC);">
+          Calculate Service
+        </button>
+      </div>
+
+      <div class="mt-3">
+        <button type="button" id="reset-btn"
+          class="w-full py-3 rounded-lg font-semibold text-sm"
+          style="background-color:#f3e7fc; color:#411288;">
+          Reset
+        </button>
+      </div>
+
+     </form>
+    </div><!-- Saved Services -->
+    <div class="rounded-lg shadow-lg p-6" style="background-color: #ffffff;">
+     <h2 class="text-2xl font-semibold mb-4" style="background: linear-gradient(120deg, #411288, #00C4CC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;">Service Price</h2>
+
+     <div id="services-list" class="space-y-3">
+      <p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>
+     </div>
+    </div>
+
+    <!-- Share + Copy link buttons directly under the result card -->
+<!-- Share Menu (clean version) -->
+<div class="text-center mt-6 mb-6">
+  <button id="share-menu-btn"
+    style="background:linear-gradient(120deg,#7B2FF7,#00C4CC);
+           color:white;
+           padding:12px 24px;
+           border-radius:10px;
+           font-weight:600;
+           cursor:pointer;
+           box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+    Share ▾
+  </button>
+
+  <!-- Hidden menu -->
+  <div id="share-menu" style="display:none;
+                              background:white;
+                              border:1px solid #eee;
+                              margin-top:8px;
+                              border-radius:10px;
+                              box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+    <button onclick="copyResultText()" class="share-opt">Copy Result</button>
+    <button onclick="copyLink()" class="share-opt">Copy Tool Link</button>
+    <button onclick="shareTool()" class="share-opt">Share Tool</button>
+  </div>
+</div>
+
+<style>
+.share-opt {
+  width:100%;
+  padding:10px 18px;
+  background:white;
+  border:none;
+  text-align:left;
+  font-size:0.95em;
+  cursor:pointer;
+}
+.share-opt:hover {
+  background:#f7f5ff;
+}
+</style>
+
+
+
+
+    <section class="mt-6 max-w-3xl mx-auto text-gray-700 leading-relaxed">
+      <p style="margin-bottom: 18px; color: #1e1e22;">
+        <strong> Want access to the full Nail Bar Budget interactive sheet?</strong> It’s included with our 
+        <a href="New-product-1.html" style="color:#7B2FF7; font-weight:600; text-decoration:underline;">Nail Bar Kit</a>, 
+        built to help nail artists organize costs, plan services, and streamline their workspace.
+      </p>
+
+      <p style="margin-bottom: 16px; color: #1e1e22;">
+        Pricing nail services can feel overwhelming, especially when you’re trying to balance time, product costs, and the income you want to earn. This Nail Artist Business Calculator makes it easy to set accurate prices for acrylic sets, gel nails, refills, and more by showing you the true cost behind each service.
+      </p>
+
+      <p style="margin-bottom: 16px; color: #1e1e22;">
+        Many nail technicians undercharge without realizing how much labour and product go into their work. With this tool, you can understand your real value, see which services are most profitable, and confidently set rates whether you work in a salon, from home, or as a part-time side hustle.
+      </p>
+
+    </section>
+   </div>
+  </div>
+  
+    <script>
+    // Calculator logic, state & UI enhancements
+
+    let isLoadingPreset = false;
+
+  const form = document.getElementById('calculator-form');
+  const servicesList = document.getElementById('services-list');
+  const calculateBtn = document.getElementById('calculate-btn');
+  const resetBtn = document.getElementById('reset-btn');
+  const presetServicesSelect = document.getElementById('preset-services');
+  const customServiceInput = document.getElementById('custom-service-name');
+
+  // --- Preset services for quick start ---
+  const presetData = {
+    "short-acrylic": {
+      name: "Short Acrylic Full Set",
+      supplies: 8,
+      minutes: 90,
+      hourly: 50,
+      margin: 25
+    },
+    "gel-overlay": {
+      name: "Gel Overlay",
+      supplies: 5,
+      minutes: 60,
+      hourly: 45,
+      margin: 20
+    },
+    "biab-refill": {
+      name: "BIAB Refill",
+      supplies: 6,
+      minutes: 75,
+      hourly: 50,
+      margin: 20
+    },
+    "classic-manicure": {
+      name: "Classic Manicure",
+      supplies: 3,
+      minutes: 40,
+      hourly: 40,
+      margin: 15
+    },
+    "pedicure": {
+      name: "Pedicure",
+      supplies: 6,
+      minutes: 60,
+      hourly: 45,
+      margin: 20
+    }
+  };
+
+
+// When user changes preset, fill the numbers
+  presetServicesSelect.addEventListener('change', function () {
+// Clear only numeric fields — NOT the dropdown
+document.getElementById('cost-supplies').value = "";
+document.getElementById('time-minutes').value = "";
+document.getElementById('hourly-rate').value = "";
+document.getElementById('profit-margin').value = 20;
+
+    const key = this.value;
+     isLoadingPreset = true; // stop auto-saving
+
+         if (key === "") {
+        isLoadingPreset = true;
+
+        customServiceInput.classList.add("hidden");
+        customServiceInput.value = "";
+
+        document.getElementById('cost-supplies').value = "";
+        document.getElementById('time-minutes').value = "";
+        document.getElementById('hourly-rate').value = "";
+        document.getElementById('profit-margin').value = 20;
+
+        calculateBtn.innerText = "Calculate Service";
+        calculateBtn.style.opacity = "1";
+
+        localStorage.removeItem('nail_calc_inputs');
+
+        isLoadingPreset = false;
+        return;
+    }
+
+if (key === "custom") {
+    customServiceInput.classList.remove("hidden");
+    return;
+} else {
+    customServiceInput.classList.add("hidden");
+}
+
+    // If selected option is a preset service, fill defaults
+    if (presetData[key]) {
+    const p = presetData[key];
+
+    // Hide custom field fully
+    customServiceInput.classList.add("hidden");
+    customServiceInput.value = "";
+
+    // Reset ALL fields to preset defaults
+    document.getElementById('cost-supplies').value = p.supplies;
+    document.getElementById('time-minutes').value = p.minutes;
+    document.getElementById('hourly-rate').value = p.hourly;
+    document.getElementById('profit-margin').value = p.margin;
+
+    // Reset calculate button state
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
+
+    // Save preset defaults
+    localStorage.setItem('nail_calc_inputs', JSON.stringify({
+        serviceName: p.name,
+        presetKey: key,
+        costSupplies: p.supplies,
+        timeMinutes: p.minutes,
+        hourlyRate: p.hourly,
+        profitMargin: p.margin
+    }));
+
+    isLoadingPreset = false;
+    return;
+}
+
+  });
+
+  // --- Currency detection (same as before) ---
+  function detectCurrency() {
+    const locale = navigator.language || navigator.userLanguage || '';
+    const map = {
+      US: 'USD', CA: 'CAD', GB: 'GBP', AU: 'AUD', NZ: 'NZD', SG: 'SGD',
+      IE: 'EUR', DE: 'EUR', FR: 'EUR', NL: 'EUR', ES: 'EUR', IT: 'EUR',
+      PT: 'EUR', BE: 'EUR', AT: 'EUR', FI: 'EUR', GR: 'EUR', LU: 'EUR',
+      JP: 'JPY', CN: 'CNY', IN: 'INR', AE: 'AED', SA: 'SAR', ZA: 'ZAR',
+      CH: 'CHF'
+    };
+    const upper = locale.toUpperCase();
+    for (const key in map) {
+      if (upper.includes(key)) return map[key];
+    }
+    return 'USD';
+  }
+
+  const USER_CURRENCY = detectCurrency();
+  const currencyFormatter = new Intl.NumberFormat(
+    navigator.language || 'en-US',
+    { style: 'currency', currency: USER_CURRENCY }
+  );
+
+  // last calculated / favourite result (used for share, copy, favourite)
+  window.lastServiceResult = null;
+
+  // --- helpers ---
+
+  function getInputValue(id) {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    return el.value;
+  }
+
+  function saveInputsToLocalStorage() {
+    if (isLoadingPreset) return; // skip saving during preset loading
+    let key = presetServicesSelect.value;
+    let name = "";
+
+    if (presetData[key]) {
+      name = presetData[key].name;
+    } else if (key === "custom") {
+      name = customServiceInput.value.trim() || "Custom Service";
+    }
+
+    const payload = {
+      serviceName: name,
+      presetKey: key,
+      costSupplies: getInputValue('cost-supplies'),
+      timeMinutes: getInputValue('time-minutes'),
+      hourlyRate: getInputValue('hourly-rate'),
+      profitMargin: getInputValue('profit-margin')
+    };
+
+    try {
+      localStorage.setItem('nail_calc_inputs', JSON.stringify(payload));
+    } catch (e) {
+      console.warn('Unable to save inputs', e);
+    }
+  }
+
+  // On page load, restore last used values
+  function restoreInputsFromLocalStorage() {
+    try {
+      const raw = localStorage.getItem('nail_calc_inputs');
+      if (!raw) return;
+
+      const saved = JSON.parse(raw);
+
+      if (saved.presetKey) {
+        presetServicesSelect.value = saved.presetKey;
+      }
+
+      // If last time was custom → restore custom fields
+      if (saved.presetKey === "custom") {
+        customServiceInput.classList.remove("hidden");
+        customServiceInput.value = saved.serviceName || "";
+
+        if (saved.costSupplies) document.getElementById('cost-supplies').value = saved.costSupplies;
+        if (saved.timeMinutes) document.getElementById('time-minutes').value = saved.timeMinutes;
+        if (saved.hourlyRate) document.getElementById('hourly-rate').value = saved.hourlyRate;
+        if (saved.profitMargin) document.getElementById('profit-margin').value = saved.profitMargin;
+      } else {
+        // If last time used a preset → show the preset's default numbers
+        customServiceInput.classList.add("hidden");
+        if (presetData[saved.presetKey]) {
+          const p = presetData[saved.presetKey];
+          document.getElementById('cost-supplies').value = p.supplies;
+          document.getElementById('time-minutes').value = p.minutes;
+          document.getElementById('hourly-rate').value = p.hourly;
+          document.getElementById('profit-margin').value = p.margin;
+        }
+      }
+          // Reset button state on page load
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
+
+    } catch (e) {
+      console.warn('Unable to restore inputs', e);
+    }
+  }
+
+  function getServiceIcon(name) {
+    const n = name.toLowerCase();
+
+    if (n.includes("acrylic")) return "💅";
+    if (n.includes("gel")) return "🌈";
+    if (n.includes("biab")) return "💎";
+    if (n.includes("mani")) return "✨";
+    if (n.includes("pedi")) return "🦶";
+
+    return "🌟"; // fallback for custom or unknown
+  }
+
+  function renderServiceCard(data) {
+    const suppliesPct = data.totalCost > 0 ? (data.costSupplies / data.totalCost) * 100 : 0;
+    const laborPct = data.totalCost > 0 ? (data.laborCost / data.totalCost) * 100 : 0;
+    const profitPct = data.suggestedPrice > 0 ? (data.profit / data.suggestedPrice) * 100 : 0;
+
+    return `
+      <div class="border-2 rounded-lg p-4" style="border-color: #f3e7fc; background-color: #fbf2fd;">
+        <div class="flex justify-between items-start mb-3">
+          <div class="flex-1">
+            <p style="font-size:0.85em; text-transform:uppercase; letter-spacing:0.08em; color:#6b7280; margin-bottom:4px;">
+              ${getServiceIcon(data.serviceName)} ${data.serviceName || 'Service'}
+            </p>
+            <div style="font-size:2.2rem; font-weight:800;
+                background: linear-gradient(120deg, #7B2FF7, #00C4CC);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom:4px;">
+              ${currencyFormatter.format(data.suggestedPrice)}
+            </div>
+            <p style="font-size:0.98em; color:#111827; margin-bottom:4px;">
+              <span style="font-weight:600; color:#7B2FF7;">Profit:</span>
+              ${currencyFormatter.format(data.profit)}
+            </p>
+            <p style="font-size:0.9em; color:#4b5563; margin-bottom:6px;">
+              Total cost: ${currencyFormatter.format(data.totalCost)} (${data.profitMargin}% margin)
+            </p>
+            <p style="font-size:0.85em; color:#6b7280; margin-bottom:8px;">
+              Supplies: ${suppliesPct.toFixed(1)}% &nbsp;•&nbsp;
+              Labour: ${laborPct.toFixed(1)}% &nbsp;•&nbsp;
+              Profit: ${profitPct.toFixed(1)}%
+            </p>
+            <p style="font-size:0.8em; color:#6b7280;">
+              Tax is not included in this price.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-sm" style="color: #374151;">
+          <div>💰 Supplies: ${currencyFormatter.format(data.costSupplies)}</div>
+          <div>⏱️ Time: ${data.timeMinutes} min</div>
+          <div>💵 Hourly Rate: ${currencyFormatter.format(data.hourlyRate)}</div>
+          <div>📈 Margin: ${data.profitMargin}%</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Attach input listeners for saving
+  ['cost-supplies','time-minutes','hourly-rate','profit-margin','custom-service-name','preset-services'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', saveInputsToLocalStorage);
+  });
+
+  // Restore inputs on load
+  restoreInputsFromLocalStorage();
+
+  // Submit handler
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let serviceKey = presetServicesSelect.value;
+      let serviceName = "";
+
+      if (presetData[serviceKey]) {
+        serviceName = presetData[serviceKey].name;
+      } else if (serviceKey === "custom") {
+        serviceName = customServiceInput.value.trim() || "Custom Service";
+      } else {
+        serviceName = "Custom Service";
+      }
+
+      const costSupplies = parseFloat(getInputValue('cost-supplies')) || 0;
+      const timeMinutes = parseFloat(getInputValue('time-minutes')) || 0;
+      const hourlyRate = parseFloat(getInputValue('hourly-rate')) || 0;
+      const profitMargin = parseFloat(getInputValue('profit-margin')) || 0;
+
+      const laborCost = (hourlyRate / 60) * timeMinutes;
+      const totalCost = costSupplies + laborCost;
+      const profit = totalCost * (profitMargin / 100);
+      const suggestedPrice = totalCost + profit;
+
+      const data = {
+        serviceName,
+        costSupplies,
+        timeMinutes,
+        hourlyRate,
+        profitMargin,
+        laborCost,
+        totalCost,
+        profit,
+        suggestedPrice
+      };
+
+      // Make it global for "copy result"
+      window.lastServiceResult = data;
+
+      // Update UI
+      if (servicesList) {
+        servicesList.innerHTML = renderServiceCard(data);
+      }
+
+      // Save inputs
+      saveInputsToLocalStorage();
+
+      // Change button state
+      calculateBtn.innerText = "Calculated";
+      calculateBtn.style.opacity = "0.8";
+    });
+  }
+
+  // Reset button (outside submit)
+ // Reset button (outside submit)
+if (resetBtn) {
+  resetBtn.addEventListener("click", function () {
+    form.reset();
+
+    // Default profit margin back to 20
+    document.getElementById("profit-margin").value = 20;
+
+    // Hide and clear custom field
+    customServiceInput.classList.add("hidden");
+    customServiceInput.value = "";
+
+    // Clear local storage
+    localStorage.removeItem("nail_calc_inputs");
+
+    // Reset result card text
+    servicesList.innerHTML = '<p class="text-gray-500 text-center py-8">No services yet. Add your first service above!</p>';
+
+    // Reset button text/state
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
+  });
+}
+
+    </script>
+
+
+<section class="mt-10 max-w-3xl mx-auto text-gray-700">
+  <h2 class="text-2xl font-semibold mb-3" style="background: linear-gradient(120deg, #411288, #00C4CC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2em; font-weight: 700; margin-bottom: 24px;">FAQs</h2>
+  
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">How do I calculate the right price for acrylic or gel nail services?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">To price acrylic or gel services correctly, add your supply cost, your labour cost based on time, and a profit margin. A nail pricing calculator makes this easy by doing the math for you, so you can set a fair rate that reflects your skill, product use, and time.</p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">What factors should I include when setting my hourly rate as a nail technician?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">Your hourly rate should cover your experience, overhead expenses, local market rates, and the level of detail your services require. Many nail artists use an income calculator to estimate a rate that keeps their business profitable without undercharging.</p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">How can a nail salon profit calculator help me understand my earnings?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">A profit calculator shows your true income by comparing your service price to your supply costs and time spent. It helps nail artists see which services bring in the highest profit, where prices may need adjusting, and how to plan for sustainable growth.</p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">What’s the best way to estimate supply costs for different nail services?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">
+  The easiest way is to list every product used for the service and divide the product cost by how many uses you get from each bottle or tool. A nail service pricing calculator automates this step, making your totals accurate and consistent.
+  </p>
+
+  <h3 class="text-2xl font-semibold mb-3" style="display: block; margin-bottom: 4px; font-weight: 650; font-size: 1.1em; color: #1e1e22;">How do I know if my nail service prices are profitable?</h3>
+  <p style="color: #1e1e22; font-size: 1.05em; line-height: 1.6; margin-bottom: 10px;">
+  Your services are profitable when the final price covers your supply cost, your labour time, and a healthy profit margin. Using a nail artist business calculator helps you see exactly how much you’re earning per service so you can adjust your pricing with confidence.
+  </p>
+
+<div class="max-w-3xl mx-auto mt-10 mb-4 text-center">
+  <a href="#calculator-title" 
+     style="color:#7B2FF7; font-weight:600; text-decoration:underline; font-size:0.95em; display:inline-flex; align-items:center; gap:6px;">
+    <span style="font-size:0.9em;">▲</span> Back to Calculator
+  </a>
+</div>
+<!-- Required for Screenshot -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function captureScreenshot() {
+  const card = document.querySelector("#services-list > div");
+  if (!card) {
+    alert("No result to screenshot yet.");
+    return;
+  }
+
+  html2canvas(card, { scale: 3 }).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "nail-service-result.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+</script>
+
+  <script>
+  function copyResultText() {
+    if (!window.lastServiceResult || !window.lastServiceResult.serviceName) {
+      alert("Please calculate the service first.");
+      return;
+    }
+
+    const d = window.lastServiceResult;
+    const icon = getServiceIcon(d.serviceName);
+
+    const text =
+  `${icon} ${d.serviceName}
+  💵 Suggested Price: ${currencyFormatter.format(d.suggestedPrice)}
+  💗 Profit: ${currencyFormatter.format(d.profit)}
+  🧮 Total Cost: ${currencyFormatter.format(d.totalCost)}
+  ⏱ Time: ${d.timeMinutes} min
+  💵 Hourly: ${currencyFormatter.format(d.hourlyRate)}
+  📈 Margin: ${d.profitMargin}%`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Result copied!");
+    }).catch(() => {
+      alert("Unable to copy. Please copy manually.");
+    });
+  }
+  </script>
+
+
+
+<script>  
+function shareTool() {
+  if (navigator.share) {
+    navigator.share({
+      title: "Nail Service Pricing Calculator",
+      text: "Check out this tool to price your nail services:",
+      url: window.location.href
+    });
+  } else {
+    alert("Sharing isn't supported on this device, but you can copy the link instead.");
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("Link copied!");
+}
+</script>
+
+<script>
+// Toggle Share Dropdown
+document.getElementById("share-menu-btn").addEventListener("click", () => {
+  const menu = document.getElementById("share-menu");
+  menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "block" : "none";
+});
+</script>
+<script>
+  function toggleHelper(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+
+</body>
+</html>
