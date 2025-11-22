@@ -502,35 +502,40 @@ select {
       supplies: 8,
       minutes: 90,
       hourly: 50,
-      margin: 25
+      margin: 25,
+        overhead: 2.00   // <-- add this
     },
     "gel-overlay": {
       name: "Gel Overlay",
       supplies: 5,
       minutes: 60,
       hourly: 45,
-      margin: 20
+      margin: 20,
+      overhead: 5.00   // <-- add this
     },
     "biab-refill": {
       name: "BIAB Refill",
       supplies: 6,
       minutes: 75,
       hourly: 50,
-      margin: 20
+      margin: 20,
+      overhead: 2.00   // <-- add this
     },
     "classic-manicure": {
       name: "Classic Manicure",
       supplies: 3,
       minutes: 40,
       hourly: 40,
-      margin: 15
+      margin: 15,
+      overhead: 4.00   // <-- add this
     },
     "pedicure": {
       name: "Pedicure",
       supplies: 6,
       minutes: 60,
       hourly: 45,
-      margin: 20
+      margin: 20,
+      overhead: 3.00   // <-- add this
     }
   };
 
@@ -583,7 +588,7 @@ if (key === "custom") {
 
     // Reset ALL fields to preset defaults
     document.getElementById('cost-supplies').value = p.supplies;
-    document.getElementById('overhead-cost').value = "";
+    document.getElementById('overhead-cost').value = p.overhead || 0.00;
     document.getElementById('time-minutes').value = p.minutes;
     document.getElementById('hourly-rate').value = p.hourly;
     document.getElementById('profit-margin').value = p.margin;
