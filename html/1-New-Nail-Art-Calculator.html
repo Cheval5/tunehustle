@@ -574,7 +574,22 @@ document.getElementById('profit-margin').value = 20;
 if (key === "custom") {
     customServiceInput.classList.remove("hidden");
     return;
-} else {
+} else {if (key === "custom") {
+    customServiceInput.classList.remove("hidden");
+
+    // Clear all fields (same behaviour as when no preset is chosen)
+    document.getElementById('cost-supplies').value = "";
+    document.getElementById('overhead-cost').value = "";
+    document.getElementById('time-minutes').value = "";
+    document.getElementById('hourly-rate').value = "";
+    document.getElementById('profit-margin').value = 20;
+
+    calculateBtn.innerText = "Calculate Service";
+    calculateBtn.style.opacity = "1";
+
+    return;
+}
+
     customServiceInput.classList.add("hidden");
 }
 
