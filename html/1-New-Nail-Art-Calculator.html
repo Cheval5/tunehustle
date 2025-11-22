@@ -541,57 +541,40 @@ select {
 
 
 // When user changes preset, fill the numbers
-  presetServicesSelect.addEventListener('change', function () {
-// Clear only numeric fields — NOT the dropdown
-document.getElementById('cost-supplies').value = "";
-document.getElementById('time-minutes').value = "";
-document.getElementById('hourly-rate').value = "";
-document.getElementById('profit-margin').value = 20;
+// When user changes preset, fill the numbers
+presetServicesSelect.addEventListener('change', function () {
 
-    const key = this.value;
-     isLoadingPreset = true; // stop auto-saving
+  // Clear numeric fields
+  document.getElementById('cost-supplies').value = "";
+  document.getElementById('time-minutes').value = "";
+  document.getElementById('hourly-rate').value = "";
+  document.getElementById('profit-margin').value = 20;
 
-         if (key === "") {
-        isLoadingPreset = true;
+  const key = this.value;
+  isLoadingPreset = true;
 
-        customServiceInput.classList.add("hidden");
-        customServiceInput.value = "";
+  if (key === "") {
+      // … blank preset logic …
+      return;
+  }
 
-        document.getElementById('cost-supplies').value = "";
-        document.getElementById('time-minutes').value = "";
-        document.getElementById('hourly-rate').value = "";
-        document.getElementById('profit-margin').value = 20;
+  if (key === "custom") {
+      customServiceInput.classList.remove("hidden");
 
-        calculateBtn.innerText = "Calculate Service";
-        calculateBtn.style.opacity = "1";
+      document.getElementById('cost-supplies').value = "";
+      document.getElementById('overhead-cost').value = "";
+      document.getElementById('time-minutes').value = "";
+      document.getElementById('hourly-rate').value = "";
+      document.getElementById('profit-margin').value = 20;
 
-        localStorage.removeItem('nail_calc_inputs');
+      calculateBtn.innerText = "Calculate Service";
+      calculateBtn.style.opacity = "1";
+      return;
+  }
 
-        isLoadingPreset = false;
-        return;
-    }
+  // PRESET logic continues below…
+});
 
-if (key === "custom") {
-    customServiceInput.classList.remove("hidden");
-    return;
-} else {if (key === "custom") {
-    customServiceInput.classList.remove("hidden");
-
-    // Clear all fields (same behaviour as when no preset is chosen)
-    document.getElementById('cost-supplies').value = "";
-    document.getElementById('overhead-cost').value = "";
-    document.getElementById('time-minutes').value = "";
-    document.getElementById('hourly-rate').value = "";
-    document.getElementById('profit-margin').value = 20;
-
-    calculateBtn.innerText = "Calculate Service";
-    calculateBtn.style.opacity = "1";
-
-    return;
-}
-
-    customServiceInput.classList.add("hidden");
-}
 
     // If selected option is a preset service, fill defaults
     if (presetData[key]) {
