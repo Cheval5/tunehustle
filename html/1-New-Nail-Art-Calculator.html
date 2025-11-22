@@ -11,6 +11,15 @@
     display: none;
   }
 </style>
+<!-- Consistent mobile form height -->
+<style>
+@media (max-width: 480px) {
+  input, select {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+}
+</style>
 
 <script type="application/ld+json">
 {
@@ -175,10 +184,10 @@
   </select>
 
   <input
-    type="text"
+    type="text"\\\\
     id="custom-service-name"
     placeholder="Enter your custom service name"
-    class="w-full px-4 py-2 border-2 rounded-lg hidden"
+    class="w-full px-4 py-3 border-2 rounded-lg hidden"
     style="border-color:#f3e7fc; background-color:#fbf2fd; margin-top:8px;"
   >
 
